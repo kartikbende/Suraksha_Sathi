@@ -5,6 +5,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        body: SafeArea(
+      child: Column(children: [Text("OK OK OK OK")]),
+    ));
   }
 }

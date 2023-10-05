@@ -10,8 +10,12 @@ class custom_app_bar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (() => onTap),
+    return GestureDetector(
+      onTap: () {
+        if (onTap != null) {
+          onTap!();
+        }
+      },
       child: Container(
         child: Text(
           quotee[quoteeIndex!],

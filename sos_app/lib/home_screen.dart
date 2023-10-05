@@ -1,16 +1,29 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:sos_app/widgets/CustomCarousel.dart';
 import 'package:sos_app/widgets/custom_app_bar.dart';
 
 // ignore: must_be_immutable
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   //const HomeScreen({super.key});
-  int qIndex = 0;
+  int qIndex = 1;
 
   getRandomQuote() {
     Random random = Random();
-    qIndex = random.nextInt(6);
+    setState(() {
+      qIndex = random.nextInt(6);
+    });
+  }
+
+  @override
+  void initState() {
+    getRandomQuote();
+    super.initState();
   }
 
   @override
@@ -25,6 +38,7 @@ class HomeScreen extends StatelessWidget {
                       quoteeIndex: qIndex,
                       onTap: getRandomQuote(),
                     ),
+                    CustomCarousel(),
                   ],
                 ))));
   }

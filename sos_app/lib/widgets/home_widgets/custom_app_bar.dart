@@ -19,9 +19,7 @@ class custom_app_bar extends StatelessWidget {
       child: Container(
         child: Text(
           quotee[quoteeIndex!],
-          style: TextStyle(
-            fontSize: 22,
-          ),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );

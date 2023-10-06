@@ -26,12 +26,29 @@ class CustomCarousel extends StatelessWidget {
                             image: NetworkImage(
                               imageSliders[index],
                             ))),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        articleTitle[index],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.white),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: LinearGradient(colors: [
+                          Colors.black.withOpacity(0.5),
+                          Colors.transparent,
+                        ]),
+                      ),
+                      child: Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Padding(
+                          padding:
+                              const EdgeInsets.only(bottom: 8, left: 8, top: 8),
+                          child: Text(
+                            articleTitle[index],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.05,
+                            ),
+                          ),
+                        ),
                       ),
                     )),
               )),

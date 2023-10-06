@@ -1,7 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:sos_app/widgets/CustomCarousel.dart';
-import 'package:sos_app/widgets/custom_app_bar.dart';
+import 'package:sos_app/widgets/home_widgets/CustomCarousel.dart';
+import 'package:sos_app/widgets/home_widgets/custom_app_bar.dart';
+import 'package:sos_app/widgets/home_widgets/emrgency.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
@@ -39,6 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: getRandomQuote(),
                     ),
                     CustomCarousel(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Emergeny Contacts",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Emergency(),
                   ],
                 ))));
   }

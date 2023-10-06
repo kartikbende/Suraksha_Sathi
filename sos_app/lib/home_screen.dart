@@ -43,8 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Emergeny Contacts",
-                        textAlign: TextAlign.left,
+                        "Emergeny",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),

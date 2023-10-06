@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sos_app/widgets/home_widgets/emergencies.dart/ActiveEmergency.dart';
+import 'package:sos_app/widgets/home_widgets/emergencies.dart/AmbulanceEmergency.dart';
+import 'package:sos_app/widgets/home_widgets/emergencies.dart/FireBrigadeEmergency.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/policeemergemcy.dart';
 
 class Emergency extends StatelessWidget {
@@ -13,6 +16,9 @@ class Emergency extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           children: [
+            ActiveEmergency(),
+            AmbulanceEmergency(),
+            FirebrigadeEmergency(),
             PoiliceEmergency(),
           ],
         ));

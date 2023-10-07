@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sos_app/home_screen.dart';
+import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomeScreen());
+        home: bottomnavbar());
   }
 }

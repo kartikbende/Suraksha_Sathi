@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sos_app/widgets/home_widgets/CustomCarousel.dart';
 import 'package:sos_app/widgets/home_widgets/custom_app_bar.dart';
 import 'package:sos_app/widgets/home_widgets/emrgency.dart';
+import 'package:sos_app/widgets/home_widgets/sosbutton.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
@@ -49,6 +50,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Emergency(),
+                    SOSbtn(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        textAlign: TextAlign.start,
+                        "Neareast Comodities",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ))));
   }

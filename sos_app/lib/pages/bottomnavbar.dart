@@ -26,7 +26,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
       body: pages[currentIndex],
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 15,
+          horizontal: 10,
           vertical: 5,
         ),
         child: GNav(

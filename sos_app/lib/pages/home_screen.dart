@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sos_app/widgets/home_widgets/CustomCarousel.dart';
 import 'package:sos_app/widgets/home_widgets/custom_app_bar.dart';
 import 'package:sos_app/widgets/home_widgets/emrgency.dart';
+import 'package:sos_app/widgets/home_widgets/nearcomo.dart';
 import 'package:sos_app/widgets/home_widgets/sosbutton.dart';
 
 // ignore: must_be_immutable
@@ -34,33 +35,36 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
             child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    custom_app_bar(
-                      quoteeIndex: qIndex,
-                      onTap: getRandomQuote(),
-                    ),
-                    CustomCarousel(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Emergeny",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                child: Expanded(
+                  child: Column(
+                    children: [
+                      custom_app_bar(
+                        quoteeIndex: qIndex,
+                        onTap: getRandomQuote(),
                       ),
-                    ),
-                    Emergency(),
-                    SOSbtn(),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        textAlign: TextAlign.start,
-                        "Neareast Comodities",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      CustomCarousel(),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                          "Emergeny",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  ],
+                      Emergency(),
+                      SOSbtn(),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          "Nearest Comodities",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      nearcomodity(),
+                    ],
+                  ),
                 ))));
   }
 }

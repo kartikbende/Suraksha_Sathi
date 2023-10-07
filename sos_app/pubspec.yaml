@@ -39,7 +39,8 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_phone_direct_caller: ^2.1.1
   google_nav_bar: ^5.0.6
-  
+  url_launcher: ^6.1.14
+  fluttertoast: ^8.2.2
   
 
 dev_dependencies:

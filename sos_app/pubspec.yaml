@@ -41,6 +41,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   url_launcher: ^6.1.14
   fluttertoast: ^8.2.2
+  webview_flutter: ^4.4.1
   
 
 dev_dependencies:

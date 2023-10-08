@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sos_app/Login_screen.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,6 +23,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: bottomnavbar());
+        home: LoginScreen());
   }
 }

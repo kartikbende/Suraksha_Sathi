@@ -20,6 +20,7 @@ class custom_app_bar extends StatelessWidget {
         child: Text(
           quotee[quoteeIndex!],
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.left,
         ),
       ),
     );

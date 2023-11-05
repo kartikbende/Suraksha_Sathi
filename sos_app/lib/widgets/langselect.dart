@@ -49,7 +49,7 @@ class langselect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('title'.tr),
+          title: Text('Language Selection Page Woking Concept'.tr),
         ),
         body: Center(
           child: Column(

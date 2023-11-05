@@ -32,26 +32,33 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: SafeArea(
+      body: SingleChildScrollView(
+        child: SafeArea(
           child: ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: 800.0),
-        child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Expanded(
+            constraints: BoxConstraints(maxHeight: 800.0),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.stretch, // Align children horizontally
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceEvenly, // Evenly spaced children
                 children: [
-                  custom_app_bar(
-                    quoteeIndex: qIndex,
-                    onTap: getRandomQuote(),
+                  Align(
+                    alignment: Alignment.center,
+                    child: custom_app_bar(
+                      quoteeIndex: qIndex,
+                      onTap: getRandomQuote(),
+                    ),
                   ),
                   CustomCarousel(),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
-                      "Emergeny",
+                      "Emergency",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   Emergency(),
@@ -59,17 +66,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
-                      textAlign: TextAlign.start,
-                      "Nearest Comodities",
+                      "Nearest Commodities",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   nearcomodity(),
                 ],
               ),
-            )),
-      )),
-    ));
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

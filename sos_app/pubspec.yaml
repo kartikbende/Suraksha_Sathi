@@ -42,10 +42,12 @@ dependencies:
   url_launcher: ^6.1.14
   fluttertoast: ^8.2.2
   webview_flutter: ^4.4.1
-  flutter_polyline_points: ^2.0.0 
-  google_maps_flutter: ^2.5.0
-  location: ^5.0.0
-  flutter_svg: ^2.0.9
+  flutter_polyline_points: ^2.0.0                
+  easy_localization: ^3.0.3
+  get:
+  animated_splash_screen: ^1.3.0
+  
+
 
 
   

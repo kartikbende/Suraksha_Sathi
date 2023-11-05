@@ -15,10 +15,14 @@ class SOSbtn extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // onPressed: () {},
+
               TextButton(
                 onPressed: () {},
-                child: Image.asset('assests/sosbtn.png'),
-              )
+                child: Image.asset(
+                  'assests/sosbtn.png',
+                ),
+              ),
             ],
           ),
         ),

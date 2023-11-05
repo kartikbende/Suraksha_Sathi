@@ -46,22 +46,23 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: preftx,
           suffixIcon: suffix,
           labelText: hint_text ?? "Hint Text",
+          hintStyle: TextStyle(color: const Color.fromARGB(255, 245, 242, 242)),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
                   style: BorderStyle.solid,
                   color: Theme.of(context).primaryColor)),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
                   style: BorderStyle.solid, color: Color(0xFF909A9E))),
           focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(
                   style: BorderStyle.solid,
                   color: Theme.of(context).primaryColor)),
           errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(8),
               borderSide:
                   BorderSide(style: BorderStyle.solid, color: Colors.red))),
     );

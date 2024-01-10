@@ -5,7 +5,6 @@ import 'package:sos_app/components/LocaleString.dart';
 //import 'package:sos_app/Login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:sos_app/widgets/langselect.dart';
 
 void main() {
   runApp(const MyApp());

@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
 
                 // welcome text
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 18),
 
                 //USERNAME
                 Padding(
@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: 8),
 
                 // PASSWORD
                 Padding(
@@ -74,7 +74,7 @@ class LoginScreen extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
 
                 //FORGOT PASS WORD ?
@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 8,
                 ),
 
                 //my button
@@ -102,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                 ),
 
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
 
                 Padding(
@@ -132,7 +132,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
 
                 // google + apple sign in buttons
                 Row(
@@ -148,7 +148,7 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

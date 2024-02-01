@@ -64,11 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Emergency(),
                   SOSbtn(),
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Text(
                       "Nearest Commodities",
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),

@@ -1,8 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_app/Login_screen.dart';
+import 'package:sos_app/loginsetup/Login_screen.dart';
 import 'package:sos_app/components/LocaleString.dart';
-//import 'package:sos_app/Login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
 import 'package:sos_app/components/mybtn.dart';
 import 'package:sos_app/components/square_tile.dart';
+import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
+import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -56,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 12, right: 12),
                   child: CustomTextField(
                     controller: usernameController,
-                    hint_text: 'User Name',
+                    hint_text: 'Email',
                     isPassword: false,
                   ),
                 ),
@@ -83,12 +85,27 @@ class LoginScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        'Forgot Password ?',
-                        style: TextStyle(
-                          color: Colors.grey[700],
+                      GestureDetector(
+                        onLongPress: () => Text(
+                          "Forgot Password",
+                          style: TextStyle(color: Colors.blue[600]),
                         ),
-                      ),
+                        onTap: () {
+                          // Navigate to the new screen when the text is clicked
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => forgotpasss()),
+                          );
+                        },
+                        child: Text(
+                          'Forgot Password',
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[700],
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -141,10 +158,8 @@ class LoginScreen extends StatelessWidget {
                     // google button
                     SquareTile(imagePath: 'assests/google.png'),
 
-                    SizedBox(width: 25),
-
                     // apple button
-                    SquareTile(imagePath: 'assests/apple.png')
+                    // SquareTile(imagePath: 'assests/apple.png')
                   ],
                 ),
 
@@ -157,11 +172,21 @@ class LoginScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to the new screen when the text is clicked
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => signupscreen()),
+                        );
+                      },
+                      child: Text(
+                        'Signup now!!',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue[600],
+                        ),
                       ),
                     ),
                   ],

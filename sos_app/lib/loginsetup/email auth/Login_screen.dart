@@ -5,14 +5,20 @@ import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   // sign in user method
   void signuserin() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +59,11 @@ class LoginScreen extends StatelessWidget {
 
                 SizedBox(height: 18),
 
-                //USERNAME
+                //email
                 Padding(
                   padding: const EdgeInsets.only(left: 12, right: 12),
                   child: CustomTextField(
-                    controller: usernameController,
+                    controller: emailController,
                     hint_text: 'Email',
                     isPassword: false,
                   ),
@@ -178,7 +184,7 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => signupscreen()),
+                              builder: (context) => SignUpScreen()),
                         );
                       },
                       child: Text(

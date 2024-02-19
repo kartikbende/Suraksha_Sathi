@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
-import 'package:sos_app/components/mybtn.dart';
 import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sos_app/pages/bottomnavbar.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -17,7 +20,28 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
 
   // sign in user method
-  void signuserin() {}
+  void login() async {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (email == "" || password == "") {
+      log("Please fill all the fields!");
+    } else {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        if (userCredential.user != null) {
+          Navigator.popUntil(context, (route) => route.isFirst);
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => bottomnavbar()),
+          );
+        }
+      } on FirebaseAuthException catch (ex) {
+        log(ex.code.toString());
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,8 +144,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 //my button
-                Mybtn(
-                  onTap: signuserin,
+                GestureDetector(
+                  //onTap: ,
+                  onTap: () {
+                    login();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(25),
+                    margin: EdgeInsets.symmetric(horizontal: 25),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFFFD8080),
+                            Color(0xFFFB8580),
+                            Color(0xFFFBD079),
+                          ]),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Sign In",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
 
                 SizedBox(

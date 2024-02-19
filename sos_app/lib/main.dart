@@ -1,10 +1,12 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 import 'package:sos_app/components/LocaleString.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sos_app/pages/bottomnavbar.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -53,10 +55,12 @@ class MyApp extends StatelessWidget {
             ),
           ),
           screenFunction: () async {
-            //await Future.delayed(Duration(milliseconds: 150), () {});
-            return LoginScreen();
+            await Future.delayed(Duration(milliseconds: 150), () {});
+            return (FirebaseAuth.instance.currentUser != null)
+                ? bottomnavbar()
+                : LoginScreen();
           },
-          //splashTransition: SplashTransition.scaleTransition,
+          splashTransition: SplashTransition.scaleTransition,
         ));
   }
 }

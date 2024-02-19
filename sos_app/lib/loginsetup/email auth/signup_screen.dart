@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -84,7 +84,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: const EdgeInsets.only(left: 12, right: 12),
                     child: CustomTextField(
                       controller: cpasswordController,
-                      hint_text: 'Password',
+                      hint_text: 'Confirm Password',
                       isPassword: true,
                     ),
                   ),
@@ -92,13 +92,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: 8,
                   ),
-                  CupertinoButton(
-                    onPressed: () {
+                  GestureDetector(
+                    //onTap: ,
+                    onTap: () {
                       createAccount();
                     },
-                    color: Color.fromARGB(246, 251, 115, 31),
-                    child: Text("Create Account"),
-                  )
+                    child: Container(
+                      padding: EdgeInsets.all(25),
+                      margin: EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Color(0xFFFD8080),
+                              Color(0xFFFB8580),
+                              Color(0xFFFBD079),
+                            ]),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Create Account",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             )

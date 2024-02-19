@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sos_app/pages/bottomnavbar.dart';
 
 class Mybtn extends StatelessWidget {
   final Function()? onTap;
@@ -9,12 +8,7 @@ class Mybtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       //onTap: ,
-      onTap: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => bottomnavbar()),
-        );
-      },
+      onTap: () {},
       child: Container(
         padding: EdgeInsets.all(25),
         margin: EdgeInsets.symmetric(horizontal: 25),

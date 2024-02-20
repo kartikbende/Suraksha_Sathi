@@ -1,7 +1,9 @@
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 import 'package:sos_app/widgets/home_widgets/homescwidgets/CustomCarousel.dart';
-import 'package:sos_app/widgets/home_widgets/homescwidgets/custom_app_bar.dart';
+//import 'package:sos_app/widgets/home_widgets/homescwidgets/custom_app_bar.dart';
 import 'package:sos_app/widgets/home_widgets/homescwidgets/emrgency.dart';
 import 'package:sos_app/widgets/home_widgets/homescwidgets/nearcomo.dart';
 import 'package:sos_app/widgets/home_widgets/homescwidgets/sosbutton.dart';
@@ -23,6 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.popUntil(context, (route) => route.isFirst);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
+  }
+
   @override
   void initState() {
     getRandomQuote();
@@ -35,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 800.0),
+            constraints: BoxConstraints(maxHeight: 820.0),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -46,9 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Align(
                     alignment: Alignment.center,
-                    child: custom_app_bar(
-                      quoteeIndex: qIndex,
-                      onTap: getRandomQuote(),
+                    child: AppBar(
+                      title: Text("Suraksha Sathi"),
+                      actions: [
+                        IconButton(
+                            onPressed: () {
+                              logout();
+                            },
+                            icon: Icon(Icons.exit_to_app))
+                      ],
                     ),
                   ),
                   CustomCarousel(),

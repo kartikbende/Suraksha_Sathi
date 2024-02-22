@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
-class ActiveEmergency extends StatelessWidget {
+class forestdept extends StatelessWidget {
   _callNumber(String number) async {
     //set the number here
     await FlutterPhoneDirectCaller.callNumber(number);
@@ -36,22 +36,22 @@ class ActiveEmergency extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 25,
-                      backgroundColor: Colors.white.withOpacity(0.5),
-                      child: Image.asset('assests/policeman.png'),
+                      backgroundColor: Colors.black.withOpacity(0.5),
+                      child: Image.asset('assests/forestdept.png'),
                     ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Active Emergency",
+                          Text("Forest Dept",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.065,
                               )),
-                          Text("call for local authorities",
+                          Text("call for Forest Department",
                               style: TextStyle(
                                 color: Colors.white,
                                 overflow: TextOverflow.ellipsis,
@@ -60,12 +60,12 @@ class ActiveEmergency extends StatelessWidget {
                               )),
                           Container(
                             height: 30,
-                            width: 80,
+                            width: 106,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
-                              child: Text('1 - 1 - 2',
+                              child: Text('1 - 0 - 7 - 7',
                                   style: TextStyle(
                                     color: Colors.red[300],
                                     fontWeight: FontWeight.bold,

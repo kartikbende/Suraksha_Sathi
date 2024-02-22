@@ -65,7 +65,7 @@ class AmbulanceEmergency extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
-                              child: Text('1 - 0 - 2',
+                              child: Text('1 - 0 - 8',
                                   style: TextStyle(
                                     color: Colors.red[300],
                                     fontWeight: FontWeight.bold,

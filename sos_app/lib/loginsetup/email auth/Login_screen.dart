@@ -214,10 +214,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     // google button
-                    SquareTile(imagePath: 'assests/google.png'),
+                    IconButton(
+                      onPressed: () {},
+                      icon: SquareTile(imagePath: 'assests/google.png'),
+                    ),
 
-                    // apple button
-                    // SquareTile(imagePath: 'assests/apple.png')
+                    const SizedBox(width: 35),
+                    //call button
+                    IconButton(
+                      onPressed: () {},
+                      icon: SquareTile(
+                        imagePath: 'assests/callkaro.png',
+                      ),
+                    )
                   ],
                 ),
 

@@ -44,7 +44,7 @@ class PoiliceEmergency extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("National Emergency",
+                          Text("Disaster Management",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -60,12 +60,12 @@ class PoiliceEmergency extends StatelessWidget {
                               )),
                           Container(
                             height: 30,
-                            width: 80,
+                            width: 106,
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
-                              child: Text('1 - 1 - 2',
+                              child: Text('1 - 9 - 1 - 6',
                                   style: TextStyle(
                                     color: Colors.red[300],
                                     fontWeight: FontWeight.bold,

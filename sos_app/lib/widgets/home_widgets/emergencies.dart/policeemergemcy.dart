@@ -44,14 +44,14 @@ class PoiliceEmergency extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Disaster Management",
+                          Text("Disaster Dept",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.065,
                               )),
-                          Text("call for national emergencies",
+                          Text("call Disaster management",
                               style: TextStyle(
                                 color: Colors.white,
                                 overflow: TextOverflow.ellipsis,

@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 820.0),
+            constraints: BoxConstraints(maxHeight: 825.0),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

@@ -53,6 +53,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.all(15),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 0,
+                  ),
+                  //logo
+                  Center(
+                    child: Image.asset(
+                      'assests/sos_logo.png',
+                      width: 300,
+                      height: 300,
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 8,
+                  ),
+
+                  // welcome text
+                  Text(
+                    'Welcome to Suraksha Sathi ! Create your account here',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  SizedBox(height: 18),
                   //email
                   Padding(
                     padding: const EdgeInsets.only(left: 12, right: 12),

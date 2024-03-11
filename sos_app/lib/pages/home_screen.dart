@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 825.0),
+            constraints: BoxConstraints(maxHeight: 980.0),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(

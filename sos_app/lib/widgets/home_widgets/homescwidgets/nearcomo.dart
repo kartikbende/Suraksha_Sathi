@@ -4,6 +4,7 @@ import 'package:sos_app/widgets/near%20comodities/BusStops.dart';
 import 'package:sos_app/widgets/near%20comodities/Hospitals.dart';
 import 'package:sos_app/widgets/near%20comodities/Pharmacies.dart';
 import 'package:sos_app/widgets/near%20comodities/PoliceStationCard.dart';
+import 'package:sos_app/widgets/near%20comodities/petrolpump.dart';
 import 'package:sos_app/widgets/near%20comodities/toilets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,15 +28,17 @@ class nearcomodity extends StatelessWidget {
       child: Container(
         height: 80,
         width: MediaQuery.of(context).size.width,
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
+        child: GridView.count(
+          physics: NeverScrollableScrollPhysics(),
+          mainAxisSpacing: 1,
+          crossAxisCount: 3,
           children: [
             PoliceStationCard(onMapFunction: openMap),
             Hospitals(onMapFunction: openMap),
             Pharmacies(onMapFunction: openMap),
             busStops(onMapFunction: openMap),
             toilets(onMapFunction: openMap),
+            petrolpump(onMapFunction: openMap),
           ],
         ),
       ),

@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
+import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 //import 'package:flutter/widgets.dart';
 
 class forgotpasss extends StatefulWidget {
@@ -31,6 +32,12 @@ class _forgotpasssState extends State<forgotpasss> {
               content: Text('Password reset link sent check your email'),
             );
           });
+
+      Navigator.popUntil(context, (route) => route.isFirst);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
     } on FirebaseAuthException catch (e) {
       print(e);
       showDialog(

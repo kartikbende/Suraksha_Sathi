@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 //import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
@@ -16,8 +17,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController cpasswordController = TextEditingController();
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
+  TextEditingController phonenumberController = TextEditingController();
 
-  void createAccount() async {
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    cpasswordController.dispose();
+    firstnameController.dispose();
+    lastnameController.dispose();
+    phonenumberController.dispose();
+    super.dispose();
+  }
+
+  addUserDetails(
+    String firstName,
+    String lastName,
+    String email,
+    String phoneNumber,
+  ) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'first name': firstName,
+      'last name': lastName,
+      'email': email,
+      'phone number': phoneNumber,
+    });
+  }
+
+  Future createAccount() async {
+    //create user
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
     String cPassword = cpasswordController.text.trim();
@@ -30,6 +60,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);
+
+        await userCredential.user!.sendEmailVerification();
+
+        addUserDetails(
+          firstnameController.text.trim(),
+          lastnameController.text.trim(),
+          emailController.text.trim(),
+          phonenumberController.text.trim(),
+        );
         if (userCredential.user != null) {
           Navigator.pop(context);
         }
@@ -38,6 +77,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     }
   }
+
+  // Future addUserDetails(
+  //   String firstName,
+  //   String lastName,
+  //   String email,
+  //   String phoneNumber,
+  // ) async {
+  //   await FirebaseFirestore.instance.collection('users').add({
+  //     'first name': firstName,
+  //     'last name': lastName,
+  //     'email': email,
+  //     'phone number': phoneNumber,
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +103,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.all(10),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 0,
-                  ),
                   //logo
                   Center(
                     child: Image.asset(
-                      'assests/sos_logo.png',
-                      width: 350,
-                      height: 350,
+                      'assests/logowotxt.png',
+                      width: 220,
+                      height: 220,
                     ),
                   ),
 
@@ -75,14 +125,49 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Text(
                       'Welcome to Suraksha Sathi ! Create your account here',
                       style: TextStyle(
-                        color: Colors.grey[700],
+                        color: Colors.black,
                         fontSize: 16,
                       ),
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  SizedBox(height: 15),
+                  //First Name
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12, right: 12),
+                    child: CustomTextField(
+                      controller: firstnameController,
+                      hint_text: 'First Name',
+                      isPassword: false,
+                    ),
+                  ),
 
-                  SizedBox(height: 18),
+                  SizedBox(height: 15),
+
+                  //Last Name
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12, right: 12),
+                    child: CustomTextField(
+                      controller: lastnameController,
+                      hint_text: 'Last Name',
+                      isPassword: false,
+                    ),
+                  ),
+
+                  SizedBox(height: 15),
+
+                  //Phone number
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12, right: 12),
+                    child: CustomTextField(
+                      controller: phonenumberController,
+                      hint_text: 'Phone Number',
+                      isPassword: false,
+                    ),
+                  ),
+
+                  SizedBox(height: 15),
+
                   //email
                   Padding(
                     padding: const EdgeInsets.only(left: 12, right: 12),
@@ -124,8 +209,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   GestureDetector(
                     //onTap: ,
-                    onTap: () {
-                      createAccount();
+                    onTap: () async {
+                      await createAccount();
                     },
                     child: Container(
                       padding: EdgeInsets.all(25),

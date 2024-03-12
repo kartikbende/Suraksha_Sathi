@@ -60,8 +60,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Center(
                     child: Image.asset(
                       'assests/sos_logo.png',
-                      width: 300,
-                      height: 300,
+                      width: 350,
+                      height: 350,
                     ),
                   ),
 
@@ -70,13 +70,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
 
                   // welcome text
-                  Text(
-                    'Welcome to Suraksha Sathi ! Create your account here',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 16,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 7, right: 7),
+                    child: Text(
+                      'Welcome to Suraksha Sathi ! Create your account here',
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
 
                   SizedBox(height: 18),
@@ -90,7 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
 
-                  SizedBox(height: 8),
+                  SizedBox(height: 15),
 
                   // PASSWORD
                   Padding(
@@ -103,7 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
 
                   SizedBox(
-                    height: 8,
+                    height: 15,
                   ),
 
                   //CONFIRM PASSWORD
@@ -117,7 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
 
                   SizedBox(
-                    height: 8,
+                    height: 15,
                   ),
                   GestureDetector(
                     //onTap: ,

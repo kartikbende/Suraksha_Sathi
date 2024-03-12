@@ -1,11 +1,11 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
 import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -62,8 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Image.asset(
                     'assests/sos_logo.png',
-                    width: 300,
-                    height: 300,
+                    width: 315,
+                    height: 315,
                   ),
                 ),
 
@@ -72,13 +72,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
 
                 // welcome text
-                Text(
-                  'Welcome to Suraksha Sathi ! Your safety is our top priority. Please log in to access our services.',
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
+                Padding(
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: Text(
+                    'Welcome to Suraksha Sathi ! Your safety is our top priority. Please log in to access our services.',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
 
                 SizedBox(height: 18),
@@ -111,15 +114,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 //FORGOT PASS WORD ?
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onLongPress: () => Text(
-                          "Forgot Password",
-                          style: TextStyle(color: Colors.blue[600]),
-                        ),
                         onTap: () {
                           // Navigate to the new screen when the text is clicked
                           Navigator.push(
@@ -132,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Forgot Password',
                           style: TextStyle(
                             fontSize: 14,
-                            color: Colors.grey[700],
+                            color: Colors.blue[600],
                           ),
                         ),
                       )

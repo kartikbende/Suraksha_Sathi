@@ -35,6 +35,14 @@ class _LoginScreenState extends State<LoginScreen> {
       log("Please fill all the fields!");
     } else {
       try {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        );
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
         if (userCredential.user != null) {

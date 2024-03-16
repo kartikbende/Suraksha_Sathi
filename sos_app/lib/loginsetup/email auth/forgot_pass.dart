@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
 import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
+import 'package:sos_app/utils/snckkbar.dart';
 //import 'package:flutter/widgets.dart';
 
 class forgotpasss extends StatefulWidget {
@@ -40,6 +41,7 @@ class _forgotpasssState extends State<forgotpasss> {
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+      showSnackBar(context, e.message.toString());
       showDialog(
           context: context,
           builder: (context) {

@@ -77,7 +77,7 @@ class _loginphoneState extends State<loginphone> {
 
                 //email
                 Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 25, right: 25),
                   child: CustomTextField(
                     controller: phonenumberController,
                     hint_text: 'Enter your phone number',

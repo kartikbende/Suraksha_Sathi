@@ -15,24 +15,29 @@ class CustomTextField extends StatelessWidget {
   final Widget? preftx;
   final Widget? suffix;
 
-  CustomTextField(
-      {this.controller,
-      this.enable = true,
-      this.check,
-      this.focusNode,
-      this.hint_text,
-      this.isPassword = false,
-      this.keyboardtype,
-      this.maxLines,
-      this.onsave,
-      this.preftx,
-      this.suffix,
-      this.tectinputaction,
-      this.validate});
+  CustomTextField({
+    this.controller,
+    this.enable = true,
+    this.check,
+    this.focusNode,
+    this.hint_text,
+    this.isPassword = false,
+    this.keyboardtype,
+    this.maxLines,
+    this.onsave,
+    this.preftx,
+    this.suffix,
+    this.tectinputaction,
+    this.validate,
+  });
 
   @override
   Widget build(context) {
     return TextFormField(
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+      ),
       enabled: enable == true ? true : enable,
       maxLines: maxLines == null ? 1 : maxLines,
       onSaved: onsave,
@@ -46,7 +51,10 @@ class CustomTextField extends StatelessWidget {
           prefixIcon: preftx,
           suffixIcon: suffix,
           labelText: hint_text ?? "Hint Text",
-          hintStyle: TextStyle(color: const Color.fromARGB(255, 245, 242, 242)),
+          hintStyle: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: const Color.fromARGB(255, 245, 242, 242)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide(

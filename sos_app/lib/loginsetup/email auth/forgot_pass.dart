@@ -72,9 +72,9 @@ class _forgotpasssState extends State<forgotpasss> {
                 //logo
                 Center(
                   child: Image.asset(
-                    'assests/logowotxt.png',
-                    width: 315,
-                    height: 315,
+                    'assests/Forgotpass.png',
+                    width: 250,
+                    height: 250,
                   ),
                 ),
 

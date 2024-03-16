@@ -67,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           firstnameController.text.trim(),
           lastnameController.text.trim(),
           emailController.text.trim(),
-          phonenumberController.text.trim(),
+          "+91" + phonenumberController.text.trim(),
         );
         if (userCredential.user != null) {
           Navigator.pop(context);

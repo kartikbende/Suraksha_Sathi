@@ -6,6 +6,7 @@ import 'package:sos_app/components/custom-textfeild.dart';
 import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
+import 'package:sos_app/loginsetup/phone%20auth/loginphone.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -35,17 +36,17 @@ class _LoginScreenState extends State<LoginScreen> {
       log("Please fill all the fields!");
     } else {
       try {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-        );
         UserCredential userCredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password);
         if (userCredential.user != null) {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          );
           Navigator.popUntil(context, (route) => route.isFirst);
           Navigator.pushReplacement(
             context,
@@ -236,7 +237,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(width: 35),
                     //call button
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => loginphone()),
+                        );
+                      },
                       icon: SquareTile(
                         imagePath: 'assests/callkaro.png',
                       ),

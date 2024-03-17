@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,29 +25,6 @@ Country Selectedcountry = Country(
     e164Key: "");
 
 TextEditingController phonenumberController = TextEditingController();
-
-Future sendOTP() async {
-  String phone =
-      "+" + Selectedcountry.countryCode + phonenumberController.text.trim();
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-  QuerySnapshot querySnapshot = await _firestore
-      .collection('users')
-      .where('phoneNumber', isEqualTo: phone)
-      .get();
-
-  if (querySnapshot.docs.isNotEmpty) {
-    await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: phone,
-        verificationCompleted: (Credential) {},
-        verificationFailed: (ex) {},
-        codeSent: (verificationId, resendToken) {
-          otpverify();
-        },
-        codeAutoRetrievalTimeout: (verificationId) {},
-        timeout: Duration(seconds: 40));
-  } else {}
-}
 
 class _loginphoneState extends State<loginphone> {
   @override
@@ -139,6 +116,24 @@ class _loginphoneState extends State<loginphone> {
                 GestureDetector(
                   //onTap: ,
                   onTap: () {
+                    Future sendOTP() async {
+                      String phone = "+91" + phonenumberController.text.trim();
+                      // FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                          phoneNumber: phone,
+                          verificationCompleted: (Credential) {},
+                          verificationFailed: (ex) {},
+                          codeSent: (verificationId, resendToken) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => otpverify()));
+                          },
+                          codeAutoRetrievalTimeout: (verificationId) {},
+                          timeout: Duration(seconds: 40));
+                    }
+
                     sendOTP();
                   },
                   child: Container(

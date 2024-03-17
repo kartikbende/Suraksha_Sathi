@@ -25,6 +25,8 @@ Country Selectedcountry = Country(
     e164Key: "");
 
 TextEditingController phonenumberController = TextEditingController();
+String phone = phonenumberController.text.trim();
+String phoneno = "+${Selectedcountry.phoneCode}$phone";
 
 class _loginphoneState extends State<loginphone> {
   @override
@@ -39,7 +41,7 @@ class _loginphoneState extends State<loginphone> {
           child: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 550.0),
+            constraints: BoxConstraints(maxHeight: 600.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -117,18 +119,25 @@ class _loginphoneState extends State<loginphone> {
                   //onTap: ,
                   onTap: () {
                     Future sendOTP() async {
-                      String phone = "+91" + phonenumberController.text.trim();
                       // FirebaseFirestore _firestore = FirebaseFirestore.instance;
+                      // QuerySnapshot querySnapshot = await _firestore
+                      //     .collection('users')
+                      //     .where('phoneNumber', isEqualTo: phoneno)
+                      //     .get();
 
+                      //   if(querySnapshot.docs.isNotEmpty){
+
+                      //   }
                       await FirebaseAuth.instance.verifyPhoneNumber(
-                          phoneNumber: phone,
+                          phoneNumber: phoneno,
                           verificationCompleted: (Credential) {},
                           verificationFailed: (ex) {},
                           codeSent: (verificationId, resendToken) {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => otpverify()));
+                                    builder: (context) => otpverify(
+                                        verificationId: verificationId)));
                           },
                           codeAutoRetrievalTimeout: (verificationId) {},
                           timeout: Duration(seconds: 40));

@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SafeArea(
         child: Center(
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 824.0),
+            constraints: BoxConstraints(maxHeight: 850.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

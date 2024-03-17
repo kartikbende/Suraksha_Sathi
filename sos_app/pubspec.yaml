@@ -52,10 +52,10 @@ dependencies:
   google_maps_flutter: ^2.5.0
   flutter_map: ^6.1.0
   country_picker: ^2.0.25
+  pinput: ^4.0.0
 
 
 
-  
 
 dev_dependencies:
   flutter_test:

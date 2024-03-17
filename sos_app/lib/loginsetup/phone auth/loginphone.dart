@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sos_app/components/custom-textfeild.dart';
+import 'package:sos_app/loginsetup/phone%20auth/otpverification.dart';
 
 class loginphone extends StatefulWidget {
   const loginphone({super.key});
@@ -24,7 +27,26 @@ Country Selectedcountry = Country(
 TextEditingController phonenumberController = TextEditingController();
 
 Future sendOTP() async {
-  //String phone = "+" + Selectedcountry.countryCode + phonenumberController.text.trim();
+  String phone =
+      "+" + Selectedcountry.countryCode + phonenumberController.text.trim();
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  QuerySnapshot querySnapshot = await _firestore
+      .collection('users')
+      .where('phoneNumber', isEqualTo: phone)
+      .get();
+
+  if (querySnapshot.docs.isNotEmpty) {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phone,
+        verificationCompleted: (Credential) {},
+        verificationFailed: (ex) {},
+        codeSent: (verificationId, resendToken) {
+          otpverify();
+        },
+        codeAutoRetrievalTimeout: (verificationId) {},
+        timeout: Duration(seconds: 40));
+  } else {}
 }
 
 class _loginphoneState extends State<loginphone> {

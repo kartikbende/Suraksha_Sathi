@@ -6,7 +6,7 @@ import 'package:sos_app/components/custom-textfeild.dart';
 import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
-import 'package:sos_app/loginsetup/phone%20auth/loginphone.dart';
+import 'package:sos_app/loginsetup/registerscreen.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -240,7 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => loginphone()),
+                          MaterialPageRoute(builder: (context) => regscreen()),
                         );
                       },
                       icon: SquareTile(

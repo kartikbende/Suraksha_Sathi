@@ -1,5 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sos_app/provider/auth_provider.dart';
 
 class regscreen extends StatefulWidget {
   const regscreen({super.key});
@@ -71,7 +73,7 @@ class _regscreenState extends State<regscreen> {
                   SizedBox(height: 20),
 
                   Padding(
-                    padding: const EdgeInsets.only(left: 25, right: 25),
+                    padding: const EdgeInsets.only(left: 30, right: 30),
                     child: TextFormField(
                       cursorColor: Colors.indigo[600],
                       controller: phoneController,
@@ -155,7 +157,7 @@ class _regscreenState extends State<regscreen> {
                     onTap: () {},
                     child: Container(
                       padding: EdgeInsets.all(25),
-                      margin: EdgeInsets.symmetric(horizontal: 25),
+                      margin: EdgeInsets.symmetric(horizontal: 30),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.topLeft,
@@ -169,7 +171,7 @@ class _regscreenState extends State<regscreen> {
                       ),
                       child: Center(
                         child: Text(
-                          "Log In",
+                          "Get Started",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -190,5 +192,11 @@ class _regscreenState extends State<regscreen> {
         ),
       ),
     );
+  }
+
+  void sendPhoneNumber() {
+    final ap = Provider.of<authprov>(context, listen: false);
+    String phoneNumber = phoneController.text.trim();
+    ap.signInWithPhone(context, phoneNumber);
   }
 }

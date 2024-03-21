@@ -4,19 +4,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sos_app/components/LocaleString.dart';
 import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
+import 'package:sos_app/provider/auth_provider.dart';
 
 //import 'package:sos_app/pages/home_screen.dart';
 //import 'package:sos_app/widgets/langselect.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -25,45 +28,60 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        translations: LocaleString(),
-        locale: Locale('en', 'US'),
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          textTheme: GoogleFonts.firaSansTextTheme(
-            Theme.of(context).textTheme,
-          ),
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => authprov(),
         ),
-        home: AnimatedSplashScreen.withScreenFunction(
-          animationDuration: Duration(milliseconds: 600),
-          splash: SafeArea(
-            child: Container(
-              height: 800,
-              width: 800,
-              padding: EdgeInsets.all(4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Transform.scale(
-                    scale: 9,
-                    child: Image.asset(
-                      'assests/sos_logo.png',
-                    ),
-                  ),
-                ],
-              ),
+      ],
+      child: GetMaterialApp(
+          translations: LocaleString(),
+          locale: Locale('en', 'US'),
+          title: 'Flutter Demo',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            textTheme: GoogleFonts.firaSansTextTheme(
+              Theme.of(context).textTheme,
             ),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
           ),
-          screenFunction: () async {
-            await Future.delayed(Duration(milliseconds: 150), () {});
-            return (FirebaseAuth.instance.currentUser != null)
-                ? bottomnavbar()
-                : LoginScreen();
-          },
-          splashTransition: SplashTransition.scaleTransition,
-        ));
+          home: Center(
+            child: AnimatedSplashScreen.withScreenFunction(
+              animationDuration: Duration(milliseconds: 600),
+              splash: SafeArea(
+                child: Container(
+                  height: 800,
+                  width: 800,
+                  padding: EdgeInsets.all(4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Transform.scale(
+                        scale: 9,
+                        child: Image.asset(
+                          'assests/sos_logo.png',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              screenFunction: () async {
+                // final ap = Provider.of<authprov>(context, listen: false);
+                await Future.delayed(Duration(milliseconds: 150), () {});
+                if (FirebaseAuth.instance.currentUser != null) {
+                  // add to the if statement && ap.isSignedIn == true
+                  // If user is signed in, navigate to bottomnavbar
+                  return bottomnavbar();
+                } else {
+                  // If user is not signed in and additional condition is not met, navigate to regscreen
+                  return LoginScreen();
+                }
+              },
+              splashTransition: SplashTransition.scaleTransition,
+            ),
+          )),
+    );
   }
 }

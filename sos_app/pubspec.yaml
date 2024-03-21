@@ -53,6 +53,9 @@ dependencies:
   flutter_map: ^6.1.0
   country_picker: ^2.0.25
   pinput: ^4.0.0
+  firebase_storage: ^11.6.10
+  shared_preferences: ^2.2.2
+  provider: ^6.1.2
 
 
 

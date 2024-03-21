@@ -6,8 +6,8 @@ import 'package:sos_app/components/custom-textfeild.dart';
 import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
-import 'package:sos_app/loginsetup/registerscreen.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
+import 'package:sos_app/provider/registerscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});

@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name='android.permission.INTERNET'/>
     <application
         android:label="SurakshaSathi"
         android:name="${applicationName}"
@@ -29,6 +30,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            
+              
+              
         
     </application>
 </manifest>

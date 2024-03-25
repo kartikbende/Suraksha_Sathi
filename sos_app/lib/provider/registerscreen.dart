@@ -80,9 +80,11 @@ class _regscreenState extends State<regscreen> {
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold),
                       onChanged: (value) {
-                        setState(() {
-                          phoneController.text = value;
-                        });
+                        setState(
+                          () {
+                            phoneController.text = value;
+                          },
+                        );
                       },
                       decoration: InputDecoration(
                         hintText: "Enter Phone Number",
@@ -154,19 +156,22 @@ class _regscreenState extends State<regscreen> {
                   //my button
                   GestureDetector(
                     //onTap: ,
-                    onTap: () {},
+                    onTap: () {
+                      sendPhoneNumber();
+                    },
                     child: Container(
                       padding: EdgeInsets.all(25),
                       margin: EdgeInsets.symmetric(horizontal: 30),
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color(0xFFFD8080),
-                              Color(0xFFFB8580),
-                              Color(0xFFFBD079),
-                            ]),
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFFFD8080),
+                            Color(0xFFFB8580),
+                            Color(0xFFFBD079),
+                          ],
+                        ),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -197,6 +202,6 @@ class _regscreenState extends State<regscreen> {
   void sendPhoneNumber() {
     final ap = Provider.of<authprov>(context, listen: false);
     String phoneNumber = phoneController.text.trim();
-    ap.signInWithPhone(context, phoneNumber);
+    ap.signInWithPhone(context, "+${Selectedcountry.phoneCode}$phoneNumber");
   }
 }

@@ -35,53 +35,54 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: GetMaterialApp(
-          translations: LocaleString(),
-          locale: Locale('en', 'US'),
-          title: 'Flutter Demo',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            textTheme: GoogleFonts.firaSansTextTheme(
-              Theme.of(context).textTheme,
-            ),
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
+        translations: LocaleString(),
+        locale: Locale('en', 'US'),
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: GoogleFonts.firaSansTextTheme(
+            Theme.of(context).textTheme,
           ),
-          home: Center(
-            child: AnimatedSplashScreen.withScreenFunction(
-              animationDuration: Duration(milliseconds: 600),
-              splash: SafeArea(
-                child: Container(
-                  height: 800,
-                  width: 800,
-                  padding: EdgeInsets.all(4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Transform.scale(
-                        scale: 9,
-                        child: Image.asset(
-                          'assests/sos_logo.png',
-                        ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: Center(
+          child: AnimatedSplashScreen.withScreenFunction(
+            animationDuration: Duration(milliseconds: 600),
+            splash: SafeArea(
+              child: Container(
+                height: 800,
+                width: 800,
+                padding: EdgeInsets.all(4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Transform.scale(
+                      scale: 9,
+                      child: Image.asset(
+                        'assests/sos_logo.png',
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              screenFunction: () async {
-                // final ap = Provider.of<authprov>(context, listen: false);
-                await Future.delayed(Duration(milliseconds: 150), () {});
-                if (FirebaseAuth.instance.currentUser != null) {
-                  // add to the if statement && ap.isSignedIn == true
-                  // If user is signed in, navigate to bottomnavbar
-                  return bottomnavbar();
-                } else {
-                  // If user is not signed in and additional condition is not met, navigate to regscreen
-                  return LoginScreen();
-                }
-              },
-              splashTransition: SplashTransition.scaleTransition,
             ),
-          )),
+            screenFunction: () async {
+              // final ap = Provider.of<authprov>(context, listen: false);
+              await Future.delayed(Duration(milliseconds: 150), () {});
+              if (FirebaseAuth.instance.currentUser != null) {
+                // add to the if statement && ap.isSignedIn == true
+                // If user is signed in, navigate to bottomnavbar
+                return bottomnavbar();
+              } else {
+                // If user is not signed in and additional condition is not met, navigate to regscreen
+                return LoginScreen();
+              }
+            },
+            splashTransition: SplashTransition.scaleTransition,
+          ),
+        ),
+      ),
     );
   }
 }

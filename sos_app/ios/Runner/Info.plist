@@ -6,6 +6,8 @@
 <array>
   <string>tel</string>
 </array>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>[Your explanation here]</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

@@ -70,10 +70,6 @@ class _otppverifyState extends State<otppverify> {
   Widget build(BuildContext context) {
     final isLoading = Provider.of<authprov>(context, listen: true).isLoading;
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(""),
-      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -89,6 +85,16 @@ class _otppverifyState extends State<otppverify> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: GestureDetector(
+                              onTap: () => Navigator.of(context).pop(),
+                              child: const Icon(Icons.arrow_back),
+                            ),
+                          ),
+                        ),
                         //logo
                         Center(
                           child: Image.asset(

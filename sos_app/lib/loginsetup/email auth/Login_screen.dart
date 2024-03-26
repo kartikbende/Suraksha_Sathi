@@ -7,7 +7,7 @@ import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
-import 'package:sos_app/provider/otpverify.dart';
+import 'package:sos_app/provider/filluserdetail.dart';
 import 'package:sos_app/provider/registerscreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -235,9 +235,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => otppverify(
-                                    verificationId: 'verificationId',
-                                  )),
+                              builder: (context) => filldetailsuser()),
                         );
                       },
                       icon: SquareTile(imagePath: 'assests/google.png'),

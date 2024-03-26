@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
+import 'package:sos_app/provider/registerscreen.dart';
 import 'package:sos_app/widgets/home_widgets/homescwidgets/CustomCarousel.dart';
 //import 'package:sos_app/widgets/home_widgets/homescwidgets/custom_app_bar.dart';
 import 'package:sos_app/widgets/home_widgets/homescwidgets/emrgency.dart';
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.popUntil(context, (route) => route.isFirst);
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => regscreen()),
     );
   }
 
@@ -45,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(maxHeight: 980.0),
             child: Padding(

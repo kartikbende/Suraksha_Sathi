@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
+import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:sos_app/provider/auth_provider.dart';
 import 'package:sos_app/provider/filluserdetail.dart';
 import 'package:sos_app/utils/snckkbar.dart';
@@ -71,15 +72,15 @@ class _otppverifyState extends State<otppverify> {
     final isLoading = Provider.of<authprov>(context, listen: true).isLoading;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: isLoading == true
-              ? const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.green,
-                  ),
-                )
-              : Center(
+      body: SafeArea(
+        child: isLoading == true
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.green,
+                ),
+              )
+            : SingleChildScrollView(
+                child: Center(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: 620.0),
                     child: Column(
@@ -226,7 +227,7 @@ class _otppverifyState extends State<otppverify> {
                     ),
                   ),
                 ),
-        ),
+              ),
       ),
     );
   }
@@ -242,7 +243,12 @@ class _otppverifyState extends State<otppverify> {
         ap.checkExistingUser().then(
           (value) async {
             if (value == true) {
-              //user hai
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => bottomnavbar(),
+                  ),
+                  (route) => false);
             } else {
               //user nai hai naya banao
               Navigator.pushAndRemoveUntil(

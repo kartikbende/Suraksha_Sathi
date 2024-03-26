@@ -86,6 +86,7 @@ class _regscreenState extends State<regscreen> {
                           },
                         );
                       },
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         hintText: "Enter Phone Number",
                         hintStyle: TextStyle(

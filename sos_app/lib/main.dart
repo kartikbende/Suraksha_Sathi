@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:sos_app/components/LocaleString.dart';
-import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:sos_app/provider/auth_provider.dart';
+import 'package:sos_app/provider/registerscreen.dart';
 
 //import 'package:sos_app/pages/home_screen.dart';
 //import 'package:sos_app/widgets/langselect.dart';
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
             screenFunction: () async {
-              // final ap = Provider.of<authprov>(context, listen: false);
+              // final ap = Provider.of<authprov>(context, listen: true);
               await Future.delayed(Duration(milliseconds: 150), () {});
               if (FirebaseAuth.instance.currentUser != null) {
                 // add to the if statement && ap.isSignedIn == true
@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
                 return bottomnavbar();
               } else {
                 // If user is not signed in and additional condition is not met, navigate to regscreen
-                return LoginScreen();
+                return regscreen();
               }
             },
             splashTransition: SplashTransition.scaleTransition,

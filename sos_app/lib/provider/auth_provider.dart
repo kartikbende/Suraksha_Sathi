@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sos_app/provider/otpverify.dart';
+import 'package:sos_app/provider/usermodel.dart';
 
 import '../utils/snckkbar.dart';
 
@@ -13,6 +16,8 @@ class authprov extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? _uid;
   String get uid => _uid!;
+  UserModel? _userModel;
+  UserModel get userModel => _userModel!;
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -20,9 +25,17 @@ class authprov extends ChangeNotifier {
   authprov() {
     checkSign();
   }
+
   void checkSign() async {
     final SharedPreferences s = await SharedPreferences.getInstance();
     _isSignedIn = s.getBool("is_signed_in") ?? false;
+    notifyListeners();
+  }
+
+  Future setSignIn() async {
+    final SharedPreferences s = await SharedPreferences.getInstance();
+    s.setBool("is_signed_in", true);
+    _isSignedIn = true;
     notifyListeners();
   }
 
@@ -94,5 +107,48 @@ class authprov extends ChangeNotifier {
       print("NEW USER");
       return false;
     }
+  }
+
+  void saveUserDataToFirebase({
+    required BuildContext context,
+    required UserModel userModel,
+    required Function onSuccess,
+  }) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      userModel.createdAt = DateTime.now().microsecondsSinceEpoch.toString();
+      userModel.PhoneNumber = _firebaseAuth.currentUser!.phoneNumber!;
+      userModel.uid = _firebaseAuth.currentUser!.uid;
+      _userModel = userModel;
+      await _firebaseFirestore
+          .collection("users")
+          .doc(_uid)
+          .set(userModel.toMap())
+          .then((value) {
+        onSuccess();
+        _isLoading = false;
+        notifyListeners();
+      });
+    } on FirebaseAuthException catch (e) {
+      showSnckBar(
+        context,
+        e.message.toString(),
+      );
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+// storing data localy
+
+  Future saveUserDataToSP() async {
+    SharedPreferences s = await SharedPreferences.getInstance();
+    await s.setString(
+      "user_model",
+      jsonEncode(
+        userModel.toMap(),
+      ),
+    );
   }
 }

@@ -84,12 +84,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   SOSbtn(),
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(4.0),
+                      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
                       child: Text(
-                        "Nearest Commodities",
+                        "Nearest Comodity",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

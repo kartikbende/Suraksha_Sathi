@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
-class ActiveEmergency extends StatelessWidget {
+class SuicideHelpLine extends StatelessWidget {
   _callNumber(String number) async {
-    number = "10000";
+    number = "9152987821";
     await FlutterPhoneDirectCaller.callNumber(number);
   }
 
@@ -37,21 +37,21 @@ class ActiveEmergency extends StatelessWidget {
                     CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white.withOpacity(0.5),
-                      child: Image.asset('assests/policeman.png'),
+                      child: Image.asset('assests/suiciderib.png'),
                     ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Active Emergency",
+                          Text("Suicide Hotline",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.065,
                               )),
-                          Text("call for local authorities",
+                          Text("call for someone to help",
                               style: TextStyle(
                                 color: Colors.white,
                                 overflow: TextOverflow.ellipsis,
@@ -65,7 +65,7 @@ class ActiveEmergency extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
-                              child: Text('1 - 1 - 2',
+                              child: Text('S-O-S',
                                   style: TextStyle(
                                     color: Colors.red[300],
                                     fontWeight: FontWeight.bold,

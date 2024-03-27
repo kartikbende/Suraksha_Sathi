@@ -5,6 +5,7 @@ import 'package:sos_app/widgets/home_widgets/emergencies.dart/FireBrigadeEmergen
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/forestdept.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/gasdept.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/policeemergemcy.dart';
+import 'package:sos_app/widgets/home_widgets/emergencies.dart/suicidehelpline.dart';
 
 class Emergency extends StatelessWidget {
   const Emergency({super.key});
@@ -19,6 +20,7 @@ class Emergency extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           children: [
             ActiveEmergency(),
+            SuicideHelpLine(),
             AmbulanceEmergency(),
             FirebrigadeEmergency(),
             PoiliceEmergency(),

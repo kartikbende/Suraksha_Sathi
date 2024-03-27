@@ -158,12 +158,8 @@ class _otppverifyState extends State<otppverify> {
                         GestureDetector(
                           //onTap: ,
                           onTap: () {
-                            if (OTP != null) {
-                              verifyOtp(context, OTP!);
-                            } else {
-                              showSnckBar(context, "Enter 6-Digit code");
-                            }
-                          },
+                            verifyOtp(context, OTP);
+                                                    },
                           child: Container(
                             padding: EdgeInsets.all(25),
                             margin: EdgeInsets.symmetric(horizontal: 25),

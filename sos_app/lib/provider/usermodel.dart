@@ -34,3 +34,23 @@ class UserModel {
     };
   }
 }
+
+class Friendship {
+  final String userId;
+  final String friendId;
+
+  Friendship({required this.userId, required this.friendId});
+}
+
+class Users {
+  final String id;
+  final String name;
+  final String additionalInfo;
+  final String phoneNumber;
+
+  Users(
+      {required this.id,
+      required this.name,
+      required this.additionalInfo,
+      required this.phoneNumber});
+}

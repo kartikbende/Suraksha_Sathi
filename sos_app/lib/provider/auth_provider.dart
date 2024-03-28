@@ -151,4 +151,175 @@ class authprov extends ChangeNotifier {
       ),
     );
   }
+
+  // add friend ka full functionality
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<String?> getFriendIdByPhoneNumber(String phoneNumber) async {
+    QuerySnapshot query = await _firestore
+        .collection('users')
+        .where('phoneNumber', isEqualTo: phoneNumber)
+        .get();
+
+    if (query.docs.isNotEmpty) {
+      return query.docs.first.id;
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> addFriendRequest(String userId, String friendId) async {
+    await _firestore
+        .collection('friend_requests')
+        .doc(userId)
+        .collection('requests')
+        .doc(friendId)
+        .set({
+      'friendId': friendId,
+      'timestamp': DateTime.now(),
+    });
+  }
+
+  Future<bool> checkFriendshipExists(String userId, String friendId) async {
+    DocumentSnapshot doc = (await _firestore
+        .collection('friendships')
+        .doc(userId)
+        .collection('friends')
+        .doc(friendId)
+        .get());
+
+    return doc.exists;
+  }
+
+  Future<bool> checkFriendRequestExists(String userId, String friendId) async {
+    DocumentSnapshot doc = await _firestore
+        .collection('friend_requests')
+        .doc(userId)
+        .collection('requests')
+        .doc(friendId)
+        .get();
+    return doc.exists;
+  }
+
+  Future<List<User>> getFriends(String userId) async {
+    List<User> friends = [];
+
+    QuerySnapshot query = await _firestore
+        .collection('friendships')
+        .doc(userId)
+        .collection('friends')
+        .get();
+
+    for (QueryDocumentSnapshot doc in query.docs) {
+      String friendId = doc.id;
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(friendId).get();
+      if (userDoc.exists) {
+        User friend = Userss(
+          id: friendId,
+          name: userDoc['name'],
+          phoneNumber: userDoc['phoneNumber'],
+          email: userDoc['email'],
+        ) as User;
+        friends.add(friend);
+      }
+    }
+
+    return friends;
+  }
+
+  Future<List<User>> getFriendRequests(String userId) async {
+    List<User> friendRequests = [];
+
+    QuerySnapshot query = await _firestore
+        .collection('friend_requests')
+        .doc(userId)
+        .collection('requests')
+        .get();
+
+    for (QueryDocumentSnapshot doc in query.docs) {
+      String friendId = doc.id;
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(friendId).get();
+      if (userDoc.exists) {
+        User friendRequest = Userss(
+          id: friendId,
+          name: userDoc['name'],
+          phoneNumber: userDoc['phoneNumber'],
+          email: userDoc['email'],
+        ) as User;
+        friendRequests.add(friendRequest);
+      }
+    }
+
+    return friendRequests;
+  }
+
+  Future<void> acceptFriendRequest(String userId, String friendId) async {
+    // Add the friend to the user's friends list
+    await _firestore
+        .collection('friendships')
+        .doc(userId)
+        .collection('friends')
+        .doc(friendId)
+        .set({});
+
+    // Add the user to the friend's friends list
+    await _firestore
+        .collection('friendships')
+        .doc(friendId)
+        .collection('friends')
+        .doc(userId)
+        .set({});
+
+    // Remove the friend request from the user's friend requests
+    await _firestore
+        .collection('friend_requests')
+        .doc(userId)
+        .collection('requests')
+        .doc(friendId)
+        .delete();
+  }
+
+  Future<void> declineFriendRequest(String userId, String friendId) async {
+    // Remove the friend request from the user's friend requests
+    await _firestore
+        .collection('friend_requests')
+        .doc(userId)
+        .collection('requests')
+        .doc(friendId)
+        .delete();
+  }
+
+  Future<void> removeFriend(String userId, String friendId) async {
+    // Remove the friend from the user's friends list
+    await _firestore
+        .collection('friendships')
+        .doc(userId)
+        .collection('friends')
+        .doc(friendId)
+        .delete();
+
+    // Also remove the user from the friend's friends list to maintain bidirectional friendship
+    await _firestore
+        .collection('friendships')
+        .doc(friendId)
+        .collection('friends')
+        .doc(userId)
+        .delete();
+  }
+}
+
+class Userss {
+  final String id;
+  final String name;
+  final String phoneNumber;
+  final String email;
+
+  Userss({
+    required this.id,
+    required this.name,
+    required this.phoneNumber,
+    required this.email,
+  });
 }

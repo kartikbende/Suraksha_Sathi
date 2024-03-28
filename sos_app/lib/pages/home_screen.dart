@@ -57,46 +57,56 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment:
                     MainAxisAlignment.spaceEvenly, // Evenly spaced children
                 children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: AppBar(
-                      title: Text("Suraksha Sathi"),
-                      actions: [
-                        IconButton(
-                            onPressed: () {
-                              logout();
-                            },
-                            icon: Icon(Icons.exit_to_app))
-                      ],
-                    ),
-                  ),
+                  _homepageappbar(),
                   CustomCarousel(),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Text(
-                      "Emergency",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
+                  Emergencytxt(),
                   Emergency(),
                   SOSbtn(),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                      child: Text(
-                        "Nearest Comodity",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
+                  nearestcomoditytxt(),
                   nearcomodity(),
                 ],
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Align _homepageappbar() {
+    return Align(
+      alignment: Alignment.center,
+      child: AppBar(
+        title: Text("Suraksha Sathi"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                logout();
+              },
+              icon: Icon(Icons.exit_to_app))
+        ],
+      ),
+    );
+  }
+
+  Padding Emergencytxt() {
+    return const Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Text(
+        "Emergency",
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+
+  Center nearestcomoditytxt() {
+    return const Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+        child: Text(
+          "Nearest Comodity",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
     );

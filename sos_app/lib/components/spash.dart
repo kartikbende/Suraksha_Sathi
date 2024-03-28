@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 
 class splashscreen extends StatefulWidget {
   const splashscreen({super.key});
@@ -13,14 +12,6 @@ class _splashscreenState extends State<splashscreen> {
   void initState() {
     super.initState();
     // _navigatetopage();
-  }
-
-  _navigatetopage() async {
-    await Future.delayed(Duration(milliseconds: 150), () {});
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
   }
 
   @override

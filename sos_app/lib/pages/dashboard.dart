@@ -66,7 +66,7 @@ class _dashboard extends State<dashboard> {
               : Column(
                   children: _friendRequests.map((user) {
                     return ListTile(
-                      title: Text(user.email.toString()),
+                      title: Text(user.email as String),
                       subtitle: Row(
                         children: [
                           Text(user.phoneNumber.toString()),

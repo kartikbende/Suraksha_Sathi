@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:sos_app/pages/dashboard.dart';
@@ -18,13 +17,8 @@ class _bottomnavbarState extends State<bottomnavbar> {
   List<Widget> pages = [
     HomeScreen(),
     mapsview(),
-    dashboard(
-      key: null,
-      userId: FirebaseAuth.instance.currentUser!.uid,
-    ),
-    reviews(
-      userId: FirebaseAuth.instance.currentUser!.uid,
-    ),
+    dashboard(),
+    reviews(),
   ];
   @override
   Widget build(BuildContext context) {

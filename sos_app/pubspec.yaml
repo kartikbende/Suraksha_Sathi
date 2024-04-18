@@ -57,11 +57,13 @@ dependencies:
   shared_preferences: ^2.2.2
   provider: ^6.1.2
   mapbox_gl: ^0.16.0
+  contacts_service: ^0.6.3
 
 
 
 
   latlong2: any
+  permission_handler: ^11.3.1
 dev_dependencies:
   flutter_test:
    sdk: flutter

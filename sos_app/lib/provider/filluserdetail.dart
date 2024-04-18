@@ -96,14 +96,14 @@ class _filldetailsuserState extends State<filldetailsuser> {
                             children: [
                               // name
                               TextField(
-                                  hintText: "Kartik Bende",
+                                  hintText: "Enter Your Name",
                                   icon: Icons.account_circle,
                                   inputType: TextInputType.name,
                                   maxLines: 1,
                                   controller: nameController),
                               //emaiol
                               TextField(
-                                  hintText: 'abc@gmail.com',
+                                  hintText: 'Enter Your Email',
                                   icon: Icons.email,
                                   inputType: TextInputType.emailAddress,
                                   maxLines: 1,
@@ -111,7 +111,7 @@ class _filldetailsuserState extends State<filldetailsuser> {
                               // additional information
                               TextField(
                                   hintText:
-                                      "Enter the additional Information about yourself which can be used in case of SOS message",
+                                      "Enter the additional Information about yourself which can be used in emergency senario eg: Blood Group, other conditions etc.",
                                   icon: Icons.edit,
                                   inputType: TextInputType.name,
                                   maxLines: 3,

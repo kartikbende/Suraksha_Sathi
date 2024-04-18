@@ -6,9 +6,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CustomCarousel extends StatelessWidget {
   const CustomCarousel({super.key});
-  static Future<void> openArticle(String urlinks) async {
-    String urlss = urlinks;
-    final Uri _url = Uri.parse(urlss);
+  static Future<void> openArticle(urlinks) async {
+    final Uri _url = Uri.parse(urlinks);
     try {
       await launchUrl(_url);
     } catch (e) {
@@ -18,18 +17,23 @@ class CustomCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        openArticle(urlinks[0]);
-      },
-      child: CarouselSlider(
-        options: CarouselOptions(
-          aspectRatio: 2.0,
-          autoPlay: true,
-        ),
-        items: List.generate(
-          imageSliders.length,
-          (index) => Card(
+    int urlinkss;
+    return //GestureDetector(
+        // onTap: () {
+        //   openArticle(urlinks[0]);
+        // },
+        CarouselSlider(
+      options: CarouselOptions(
+        aspectRatio: 2.0,
+        autoPlay: true,
+      ),
+      items: List.generate(
+        imageSliders.length,
+        (index) => GestureDetector(
+          onTap: () {
+            openArticle(urlinks[index]);
+          },
+          child: Card(
             elevation: 5.0,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),

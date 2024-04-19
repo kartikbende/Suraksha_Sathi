@@ -28,19 +28,23 @@ class nearcomodity extends StatelessWidget {
       child: Container(
         height: 100,
         width: MediaQuery.of(context).size.width,
-        child: Center(
-          child: GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 2,
-            crossAxisCount: 3,
-            children: [
-              PoliceStationCard(onMapFunction: openMap),
-              Hospitals(onMapFunction: openMap),
-              Pharmacies(onMapFunction: openMap),
-              busStops(onMapFunction: openMap),
-              toilets(onMapFunction: openMap),
-              petrolpump(onMapFunction: openMap),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.only(right: 17),
+          child: Center(
+            child: GridView.count(
+              physics: NeverScrollableScrollPhysics(),
+              mainAxisSpacing: 2,
+              crossAxisCount: 3,
+              crossAxisSpacing: 1,
+              children: [
+                PoliceStationCard(onMapFunction: openMap),
+                Hospitals(onMapFunction: openMap),
+                Pharmacies(onMapFunction: openMap),
+                busStops(onMapFunction: openMap),
+                toilets(onMapFunction: openMap),
+                petrolpump(onMapFunction: openMap),
+              ],
+            ),
           ),
         ),
       ),

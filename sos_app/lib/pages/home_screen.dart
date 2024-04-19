@@ -63,6 +63,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   Emergency(),
                   SOSbtn(),
                   nearestcomoditytxt(),
+                  SizedBox(
+                    height: 2,
+                  ),
                   nearcomodity(),
                 ],
               ),

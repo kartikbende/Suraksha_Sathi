@@ -32,7 +32,7 @@ class PoliceStationCard extends StatelessWidget {
               ),
             ),
           ),
-          Text('Police Stations')
+          Text('P-Station')
         ],
       ),
     );

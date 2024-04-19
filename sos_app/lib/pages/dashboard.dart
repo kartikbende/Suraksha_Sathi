@@ -69,9 +69,23 @@ class _dashboard extends State<dashboard> {
               itemCount: contacts.length,
               itemBuilder: (BuildContext context, int index) {
                 Contact contact = contacts[index];
+                List<Item>? phoneNumbers = contact.phones?.toList();
+                // String? contactnameee = contact.displayName;
                 return ListTile(
-                  title: Text(contact.displayName!),
-                );
+                    title: Text(contact.displayName ?? "No Contact"),
+                    subtitle: phoneNumbers != null && phoneNumbers.isNotEmpty
+                        ? Text(phoneNumbers[0].value ?? '')
+                        : Text('No phone number'),
+                    leading:
+                        contact.avatar != null && contact.avatar!.length > 0
+                            ? CircleAvatar(
+                                backgroundImage: MemoryImage(contact.avatar!),
+                              )
+                            : CircleAvatar(
+                                child: Text(
+                                  contact.initials(),
+                                ),
+                              ));
               },
             ),
     );

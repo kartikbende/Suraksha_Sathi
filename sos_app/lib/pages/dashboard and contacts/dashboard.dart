@@ -1,6 +1,9 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sos_app/db/dbservices.dart';
+import 'package:sos_app/models/contactsm.dart';
 import 'package:sos_app/utils/snckkbar.dart';
 
 class dashboard extends StatefulWidget {
@@ -15,7 +18,7 @@ class dashboard extends StatefulWidget {
 class _dashboard extends State<dashboard> {
   List<Contact> contacts = [];
   List<Contact> contactsFiltered = [];
-  // DatabaseHelper _databaseHelper = DatabaseHelper();
+  DatabaseHelper _databaseHelper = DatabaseHelper();
 
   TextEditingController searchController = TextEditingController();
   @override
@@ -152,16 +155,16 @@ class _dashboard extends State<dashboard> {
                                         child: Text(contact.initials()),
                                       ),
                                 onTap: () {
-                                  // if (contact.phones!.length > 0) {
-                                  //   final String phoneNum =
-                                  //       contact.phones!.elementAt(0).value!;
-                                  //   final String name = contact.displayName!;
-                                  //   _addContact(TContact(phoneNum, name));
-                                  // } else {
-                                  //   Fluttertoast.showToast(
-                                  //       msg:
-                                  //           "Oops! phone number of this contact does exist");
-                                  // }
+                                  if (contact.phones!.length > 0) {
+                                    final String phoneNum =
+                                        contact.phones!.elementAt(0).value!;
+                                    final String name = contact.displayName!;
+                                    _addContact(TContact(phoneNum, name));
+                                  } else {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "Oops! phone number of this contact does exist");
+                                  }
                                 },
                               );
                             },
@@ -176,15 +179,15 @@ class _dashboard extends State<dashboard> {
     );
   }
 
-  // void _addContact(TContact newContact) async {
-  //   int result = await _databaseHelper.insertContact(newContact);
-  //   if (result != 0) {
-  //     Fluttertoast.showToast(msg: "contact added successfully");
-  //   } else {
-  //     Fluttertoast.showToast(msg: "Failed to add contacts");
-  //   }
-  //   Navigator.of(context).pop(true);
-  // }
+  void _addContact(TContact newContact) async {
+    int result = await _databaseHelper.insertContact(newContact);
+    if (result != 0) {
+      Fluttertoast.showToast(msg: "contact added successfully");
+    } else {
+      Fluttertoast.showToast(msg: "Failed to add contacts");
+    }
+    Navigator.of(context).pop(true);
+  }
 }
 
 Widget TextField(

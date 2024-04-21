@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:sos_app/pages/dashboard.dart';
+import 'package:sos_app/pages/dashboard%20and%20contacts/dashboardaddcontacts.dart';
 import 'package:sos_app/pages/home_screen.dart';
 import 'package:sos_app/pages/maps.dart';
 import 'package:sos_app/pages/review.dart';
@@ -17,7 +17,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
   List<Widget> pages = [
     HomeScreen(),
     mapsview(),
-    dashboard(),
+    AddContactsPage(),
     reviews(),
   ];
   @override

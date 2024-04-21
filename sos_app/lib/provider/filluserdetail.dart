@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sos_app/models/usermodel.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:sos_app/provider/auth_provider.dart';
-import 'package:sos_app/provider/usermodel.dart';
 import 'package:sos_app/utils/snckkbar.dart';
 
 class filldetailsuser extends StatefulWidget {
@@ -122,43 +122,47 @@ class _filldetailsuserState extends State<filldetailsuser> {
                         const SizedBox(
                           height: 20,
                         ),
-                        GestureDetector(
-                          //onTap: ,
-                          onTap: () {
-                            storeData();
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(25),
-                            margin: EdgeInsets.symmetric(horizontal: 15),
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  Color(0xFFFD8080),
-                                  Color(0xFFFB8580),
-                                  Color(0xFFFBD079),
-                                ],
-                              ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Continue",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        filluserbtn(),
                       ],
                     ),
                   ),
                 ),
               ),
+      ),
+    );
+  }
+
+  GestureDetector filluserbtn() {
+    return GestureDetector(
+      //onTap: ,
+      onTap: () {
+        storeData();
+      },
+      child: Container(
+        padding: EdgeInsets.all(25),
+        margin: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFFD8080),
+              Color(0xFFFB8580),
+              Color(0xFFFBD079),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Center(
+          child: Text(
+            "Continue",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+        ),
       ),
     );
   }

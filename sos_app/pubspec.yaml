@@ -61,6 +61,9 @@ dependencies:
   latlong2: any
   permission_handler: ^11.3.1
   sqflite: ^2.3.3
+  background_sms: ^0.0.4
+  geolocator: ^11.0.0
+  geocoding: ^3.0.0
 
   
 dev_dependencies:

@@ -4,7 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sos_app/utils/snckkbar.dart';
+import 'package:sos_app/db/dbservices.dart';
+import 'package:sos_app/models/contactsm.dart';
 
 class SOSbtn extends StatefulWidget {
   const SOSbtn({super.key});
@@ -14,84 +15,112 @@ class SOSbtn extends StatefulWidget {
 }
 
 class _SOSbtnState extends State<SOSbtn> {
-  Position? _currentPosition;
-  String? _currentAddress;
+  Position? _curentPosition;
+  String? _curentAddress;
   LocationPermission? permission;
   _getPermission() async => await [Permission.sms].request();
   _isPermissionGranted() async => await Permission.sms.status.isGranted;
   _sendSms(String phoneNumber, String message, {int? simSlot}) async {
-    await BackgroundSms.sendMessage(
-            phoneNumber: phoneNumber, message: message, simSlot: simSlot)
-        .then(
-      (SmsStatus status) {
-        if (status == "sent") {
-          Fluttertoast.showToast(msg: "Sent");
-        } else {
-          Fluttertoast.showToast(msg: "Failed");
-        }
-      },
-    );
+    SmsStatus result = await BackgroundSms.sendMessage(
+        phoneNumber: phoneNumber, message: message, simSlot: 1);
+    if (result == SmsStatus.sent) {
+      print("Sent");
+      Fluttertoast.showToast(msg: "send");
+    } else {
+      Fluttertoast.showToast(msg: "failed");
+    }
   }
 
-  _getCurrentLocation() async {
+  Future<bool> _handleLocationPermission() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location services are disabled. Please enable the services')));
+      return false;
+    }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      Fluttertoast.showToast(msg: "Location Permission Denied");
-      if (permission == LocationPermission.deniedForever) {
-        showSnckBar(context, "Location permission permanantly denied");
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
       }
     }
-    Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.bestForNavigation,
-            forceAndroidLocationManager: true)
-        .then(
-      (Position position) {
-        setState(
-          () {
-            _currentPosition = position;
-            _getAddressFromLatLong();
-          },
-        );
-      },
-    ).catchError(
-      (e) {
-        showSnckBar(
-          context,
-          e.toString(),
-        );
-      },
-    );
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
   }
 
-  _getAddressFromLatLong() async {
+  Future<void> _getCurrentLocation() async {
+    bool isLocationPermissionGranted = await _requestLocationPermission();
+    if (isLocationPermissionGranted) {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      _getAddressFromLatLon();
+      setState(() {
+        _curentPosition = position;
+      });
+    } else {
+      // Handle case when location permission is not granted
+      print('Location permission denied.');
+    }
+  }
+
+  Future<bool> _requestLocationPermission() async {
+    PermissionStatus permission = await Permission.location.request();
+    return permission == PermissionStatus.granted;
+  }
+
+  // _getCurrentLocation() async {
+  //   final hasPermission = await _handleLocationPermission();
+  //   if (!hasPermission) return;
+  //   await Geolocator.getCurrentPosition(
+  //           desiredAccuracy: LocationAccuracy.high,
+  //           forceAndroidLocationManager: true)
+  //       .then((Position position) {
+  //     setState(() {
+  //       _curentPosition = position;
+  //       print(_curentPosition!.latitude);
+  //       _getAddressFromLatLon();
+  //     });
+  //   }).catchError((e) {
+  //     Fluttertoast.showToast(msg: e.toString());
+  //   });
+  // }
+
+  _getAddressFromLatLon() async {
     try {
-      List<Placemark> placeMarks = await placemarkFromCoordinates(
-          _currentPosition!.latitude, _currentPosition!.longitude);
-      Placemark place = placeMarks[0];
-      setState(
-        () {
-          _currentAddress =
-              "${place.locality},${place.postalCode},${place.street},";
-        },
-      );
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          _curentPosition!.latitude, _curentPosition!.longitude);
+
+      Placemark place = placemarks[0];
+      setState(() {
+        _curentAddress =
+            "${place.locality},${place.postalCode},${place.street},";
+      });
     } catch (e) {
-      showSnckBar(
-        context,
-        e.toString(),
-      );
+      Fluttertoast.showToast(msg: e.toString());
     }
   }
 
   @override
   void initState() {
     super.initState();
+    _getPermission();
     _getCurrentLocation();
   }
 
-  showmodelforsos(
-    BuildContext context,
-  ) {
+  showmodelforsos(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
@@ -103,26 +132,90 @@ class _SOSbtnState extends State<SOSbtn> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Send Your Current Location to Emergency Contacts",
+                  "SEND YOUR CUURENT LOCATION IMMEDIATELY TO YOU EMERGENCY CONTACTS",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
                 SizedBox(height: 10),
+                if (_curentPosition != null) Text(_curentAddress!),
                 getlocationbtnsos(),
                 SizedBox(height: 10),
                 sendalertbtnsos(),
               ],
             ),
           ),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              )),
         );
       },
     );
   }
 
+  // showmodelforsos(
+  //   BuildContext context,
+  // ) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) {
+  //       return Container(
+  //         height: MediaQuery.of(context).size.height / 1.4,
+  //         child: Padding(
+  //           padding: const EdgeInsets.all(14.0),
+  //           child: Column(
+  //             mainAxisAlignment: MainAxisAlignment.center,
+  //             children: [
+  //               Text(
+  //                 "Send Your Current Location to Emergency Contacts",
+  //                 textAlign: TextAlign.center,
+  //                 style: TextStyle(fontSize: 20),
+  //               ),
+  //               SizedBox(height: 10),
+  //               getlocationbtnsos(),
+  //               SizedBox(height: 10),
+  //               sendalertbtnsos(),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+
   GestureDetector sendalertbtnsos() {
     return GestureDetector(
       //onTap: ,
-      onTap: () async {},
+      onTap: () async {
+        String recipients = "";
+        int i = 1;
+        List<TContact> contactList = await DatabaseHelper().getContactList();
+        for (TContact contact in contactList) {
+          recipients += contact.number;
+          if (i != contactList.length) {
+            recipients += ";";
+            i++;
+          }
+        }
+        print(contactList.length);
+        if (contactList.isEmpty) {
+          Fluttertoast.showToast(msg: "emergency contact is empty");
+        } else {
+          String messageBody =
+              "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
+
+          if (await _isPermissionGranted()) {
+            contactList.forEach((element) {
+              _sendSms("${element.number}", "i am in trouble $messageBody");
+            });
+            print("msg sent");
+          } else {
+            Fluttertoast.showToast(msg: "something wrong");
+          }
+        }
+      },
       child: Container(
         padding: EdgeInsets.all(25),
         margin: EdgeInsets.symmetric(horizontal: 15),
@@ -155,7 +248,11 @@ class _SOSbtnState extends State<SOSbtn> {
   GestureDetector getlocationbtnsos() {
     return GestureDetector(
       //onTap: ,
-      onTap: () async {},
+      onTap: () async {
+        _getCurrentLocation();
+        print("location cptred");
+        print(_curentPosition);
+      },
       child: Container(
         padding: EdgeInsets.all(25),
         margin: EdgeInsets.symmetric(horizontal: 15),

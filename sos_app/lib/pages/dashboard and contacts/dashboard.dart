@@ -41,7 +41,7 @@ class _dashboard extends State<dashboard> {
       String searchTermFlattren = flattenPhoneNumber(searchTerm);
       _contacts.retainWhere(
         (element) {
-          String contactName = element.displayName ?? "";
+          String contactName = element.givenName ?? "";
           bool nameMatch = contactName.contains(searchTerm);
           if (nameMatch == true) {
             return true;

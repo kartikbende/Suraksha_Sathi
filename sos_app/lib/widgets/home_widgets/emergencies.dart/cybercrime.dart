@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
-class PoiliceEmergency extends StatelessWidget {
+class cybercrime extends StatelessWidget {
   _callNumber(String number) async {
     //set the number here
     await FlutterPhoneDirectCaller.callNumber(number);
@@ -37,21 +37,21 @@ class PoiliceEmergency extends StatelessWidget {
                     CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white.withOpacity(0.5),
-                      child: Image.asset('assests/alert.png'),
+                      child: Image.asset('assests/cybercrimephoto.png'),
                     ),
                     Expanded(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Disaster Dept",
+                          Text("National Cyber Crime Portal",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.049,
+                                    MediaQuery.of(context).size.width * 0.035,
                               )),
-                          Text("call Disaster management",
+                          Text("if victim of cyber crime",
                               style: TextStyle(
                                 color: Colors.white,
                                 overflow: TextOverflow.ellipsis,
@@ -65,7 +65,7 @@ class PoiliceEmergency extends StatelessWidget {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20)),
                             child: Center(
-                              child: Text('1 - 9 - 1 - 6',
+                              child: Text('1 - 9 - 3 - 0',
                                   style: TextStyle(
                                     color: Colors.red[300],
                                     fontWeight: FontWeight.bold,

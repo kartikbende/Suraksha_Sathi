@@ -4,11 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:sos_app/provider/auth_provider.dart';
 import 'package:sos_app/provider/filluserdetail.dart';
-import 'package:sos_app/utils/snckkbar.dart';
 
 class otppverify extends StatefulWidget {
   final String verificationId;
-  const otppverify({super.key, required this.verificationId});
+  const otppverify({super.key, required this.verificationId, int? resendToken});
 
   @override
   State<otppverify> createState() => _otppverifyState();
@@ -65,6 +64,8 @@ String OTP = "";
                           log(ex.code.toString());
                         }
                       }  */
+int start = 45;
+bool wait = false;
 
 class _otppverifyState extends State<otppverify> {
   @override
@@ -159,7 +160,7 @@ class _otppverifyState extends State<otppverify> {
                           //onTap: ,
                           onTap: () {
                             verifyOtp(context, OTP);
-                                                    },
+                          },
                           child: Container(
                             padding: EdgeInsets.all(25),
                             margin: EdgeInsets.symmetric(horizontal: 25),
@@ -194,29 +195,27 @@ class _otppverifyState extends State<otppverify> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Didn't recieve any code",
-                              style: TextStyle(
-                                  color: Colors.grey[700], fontSize: 16),
-                            ),
-                            const SizedBox(width: 4),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigate to the new screen when the text is clicked
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => SignUpScreen()),
-                                // );
-                              },
-                              child: Text(
-                                'Resend New Code',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.blue[600],
-                                ),
-                              ),
-                            ),
+                            // RichText(
+                            //   text: TextSpan(
+                            //     children: [
+                            //       TextSpan(
+                            //         text: "Send OTP again in ",
+                            //         style: TextStyle(
+                            //             fontSize: 16, color: Colors.white),
+                            //       ),
+                            //       TextSpan(
+                            //         text: "00:$start",
+                            //         style: TextStyle(
+                            //             fontSize: 16, color: Colors.amber[700]),
+                            //       ),
+                            //       TextSpan(
+                            //         text: "sec ",
+                            //         style: TextStyle(
+                            //             fontSize: 16, color: Colors.white),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // )
                           ],
                         )
                       ],
@@ -227,6 +226,38 @@ class _otppverifyState extends State<otppverify> {
       ),
     );
   }
+
+  // void startTimer() {
+  //   final ap = Provider.of<authprov>(context, listen: true);
+  //   const onsec = Duration(seconds: 1);
+  //   Timer _timer = Timer.periodic(onsec, (timer) {
+  //     if (start == 0) {
+  //       setState(() {
+  //         timer.cancel();
+  //         sendotptextbtn(ap);
+  //       });
+  //     } else {
+  //       setState(() {
+  //         start--;
+  //       });
+  //     }
+  //   });
+  // }
+
+  // GestureDetector sendotptextbtn(authprov ap) {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       ap.resendOTP(context, phone);
+  //     },
+  //     child: Text(
+  //       'Forgot Password',
+  //       style: TextStyle(
+  //         fontSize: 16,
+  //         color: Colors.blue[600],
+  //       ),
+  //     ),
+  //   );
+  // }
 
   void verifyOtp(BuildContext context, String OTP) {
     final ap = Provider.of<authprov>(context, listen: false);

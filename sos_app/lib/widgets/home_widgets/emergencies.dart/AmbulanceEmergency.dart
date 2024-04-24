@@ -49,7 +49,7 @@ class AmbulanceEmergency extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.065,
+                                    MediaQuery.of(context).size.width * 0.049,
                               )),
                           Text("In case of medical emergency",
                               style: TextStyle(
@@ -72,7 +72,7 @@ class AmbulanceEmergency extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
-                                            0.045,
+                                            0.035,
                                   )),
                             ),
                           )

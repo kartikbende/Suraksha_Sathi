@@ -1,7 +1,6 @@
 import 'package:background_sms/background_sms.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sos_app/db/dbservices.dart';
@@ -16,11 +15,14 @@ class SOSbtn extends StatefulWidget {
 
 class _SOSbtnState extends State<SOSbtn> {
   Position? _curentPosition;
-  String? _curentAddress;
+  String? _curentAddress = "as";
   LocationPermission? permission;
   _getPermission() async => await [Permission.sms].request();
   _isPermissionGranted() async => await Permission.sms.status.isGranted;
-  _sendSms(String phoneNumber, String message, {int? simSlot}) async {
+  _sendSms(
+    String phoneNumber,
+    String message,
+  ) async {
     SmsStatus result = await BackgroundSms.sendMessage(
         phoneNumber: phoneNumber, message: message, simSlot: 1);
     if (result == SmsStatus.sent) {
@@ -66,7 +68,7 @@ class _SOSbtnState extends State<SOSbtn> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      _getAddressFromLatLon();
+      // _getAddressFromLatLon();
       setState(() {
         _curentPosition = position;
       });
@@ -98,26 +100,27 @@ class _SOSbtnState extends State<SOSbtn> {
   //   });
   // }
 
-  _getAddressFromLatLon() async {
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-          _curentPosition!.latitude, _curentPosition!.longitude);
+  // _getAddressFromLatLon() async {
+  //   try {
+  //     List<Placemark> placemarks = await placemarkFromCoordinates(
+  //         _curentPosition!.latitude, _curentPosition!.longitude);
 
-      Placemark place = placemarks[0];
-      setState(() {
-        _curentAddress =
-            "${place.locality},${place.postalCode},${place.street},";
-      });
-    } catch (e) {
-      Fluttertoast.showToast(msg: e.toString());
-    }
-  }
+  //     Placemark place = placemarks[0];
+  //     setState(() {
+  //       _curentAddress =
+  //           "${place.locality},${place.postalCode},${place.street},";
+  //     });
+  //   } catch (e) {
+  //     Fluttertoast.showToast(msg: e.toString());
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
     _getPermission();
     _getCurrentLocation();
+    _handleLocationPermission();
   }
 
   showmodelforsos(BuildContext context) {
@@ -204,11 +207,12 @@ class _SOSbtnState extends State<SOSbtn> {
           Fluttertoast.showToast(msg: "emergency contact is empty");
         } else {
           String messageBody =
-              "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}. $_curentAddress";
+              "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}.";
 
           if (await _isPermissionGranted()) {
             contactList.forEach((element) {
-              _sendSms("${element.number}", "i am in trouble $messageBody");
+              _sendSms(
+                  "${element.number}", "Help me i am in trouble $messageBody");
             });
             print("msg sent");
           } else {
@@ -250,6 +254,7 @@ class _SOSbtnState extends State<SOSbtn> {
       //onTap: ,
       onTap: () async {
         _getCurrentLocation();
+
         print("location cptred");
         print(_curentPosition);
       },
@@ -299,6 +304,7 @@ class _SOSbtnState extends State<SOSbtn> {
               TextButton(
                 onPressed: () {
                   showmodelforsos(context);
+                  _handleLocationPermission();
                 },
                 child: Image.asset(
                   'assests/sosbtn.png',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/ActiveEmergency.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/AmbulanceEmergency.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/FireBrigadeEmergency.dart';
+import 'package:sos_app/widgets/home_widgets/emergencies.dart/cybercrime.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/forestdept.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/gasdept.dart';
 import 'package:sos_app/widgets/home_widgets/emergencies.dart/policeemergemcy.dart';
@@ -20,10 +21,11 @@ class Emergency extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           children: [
             ActiveEmergency(),
-            SuicideHelpLine(),
+            cybercrime(),
             AmbulanceEmergency(),
             FirebrigadeEmergency(),
             PoiliceEmergency(),
+            SuicideHelpLine(),
             gastdept(),
             forestdept(),
           ],

@@ -49,7 +49,7 @@ class SuicideHelpLine extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.065,
+                                    MediaQuery.of(context).size.width * 0.049,
                               )),
                           Text("call for someone to help",
                               style: TextStyle(
@@ -72,7 +72,7 @@ class SuicideHelpLine extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
-                                            0.045,
+                                            0.035,
                                   )),
                             ),
                           )

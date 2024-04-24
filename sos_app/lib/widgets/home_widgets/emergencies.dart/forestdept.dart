@@ -49,7 +49,7 @@ class forestdept extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.065,
+                                    MediaQuery.of(context).size.width * 0.049,
                               )),
                           Text("call for Forest Department",
                               style: TextStyle(
@@ -72,7 +72,7 @@ class forestdept extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
-                                            0.045,
+                                            0.035,
                                   )),
                             ),
                           )

@@ -140,6 +140,15 @@ class authprov extends ChangeNotifier {
     }
   }
 
+  // // location storing
+  // void updateLocationInfirebase() async {
+  //   LocationData? currentLocation = await Location().getLocation();
+  //   await _firebaseFirestore.collection('locations').doc(_uid).set({
+  //     'latitude': currentLocation.latitude,
+  //     'longitude': currentLocation.longitude,
+  //   });
+  // }
+
 // storing data localy
 
   Future saveUserDataToSP() async {

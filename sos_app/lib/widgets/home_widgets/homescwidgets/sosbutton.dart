@@ -1,4 +1,5 @@
 import 'package:background_sms/background_sms.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
@@ -14,8 +15,10 @@ class SOSbtn extends StatefulWidget {
 }
 
 class _SOSbtnState extends State<SOSbtn> {
+  String name = FirebaseAuth.instance.currentUser!.uid.toString();
+  String names = FirebaseAuth.instance.currentUser!.displayName.toString();
   Position? _curentPosition;
-  String? _curentAddress = "as";
+  String? _curentAddress = " ";
   LocationPermission? permission;
   _getPermission() async => await [Permission.sms].request();
   _isPermissionGranted() async => await Permission.sms.status.isGranted;

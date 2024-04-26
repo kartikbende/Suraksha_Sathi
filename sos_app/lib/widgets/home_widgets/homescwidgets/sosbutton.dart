@@ -1,10 +1,14 @@
 import 'package:background_sms/background_sms.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
 import 'package:sos_app/db/dbservices.dart';
 import 'package:sos_app/models/contactsm.dart';
+
+import '../../../provider/auth_provider.dart';
 
 class SOSbtn extends StatefulWidget {
   const SOSbtn({super.key});
@@ -14,8 +18,13 @@ class SOSbtn extends StatefulWidget {
 }
 
 class _SOSbtnState extends State<SOSbtn> {
+  final uid = FirebaseAuth.instance.currentUser!.uid;
+  String name = FirebaseAuth.instance.currentUser!.uid.toString();
+  String names = FirebaseAuth.instance.currentUser!.displayName.toString();
+  String naam = " ";
+  String bioo = " ";
   Position? _curentPosition;
-  String? _curentAddress = "as";
+  String? _curentAddress = " ";
   LocationPermission? permission;
   _getPermission() async => await [Permission.sms].request();
   _isPermissionGranted() async => await Permission.sms.status.isGranted;
@@ -68,12 +77,16 @@ class _SOSbtnState extends State<SOSbtn> {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      // _getAddressFromLatLon();
+      final ap = Provider.of<authprov>(context, listen: false);
+      String? namee = await ap.getCurrentUserName(uid);
+      String? bio = await ap.getCurrentUserbio(uid);
+
       setState(() {
+        naam = namee!;
+        bioo = bio!;
         _curentPosition = position;
       });
     } else {
-      // Handle case when location permission is not granted
       print('Location permission denied.');
     }
   }
@@ -82,38 +95,6 @@ class _SOSbtnState extends State<SOSbtn> {
     PermissionStatus permission = await Permission.location.request();
     return permission == PermissionStatus.granted;
   }
-
-  // _getCurrentLocation() async {
-  //   final hasPermission = await _handleLocationPermission();
-  //   if (!hasPermission) return;
-  //   await Geolocator.getCurrentPosition(
-  //           desiredAccuracy: LocationAccuracy.high,
-  //           forceAndroidLocationManager: true)
-  //       .then((Position position) {
-  //     setState(() {
-  //       _curentPosition = position;
-  //       print(_curentPosition!.latitude);
-  //       _getAddressFromLatLon();
-  //     });
-  //   }).catchError((e) {
-  //     Fluttertoast.showToast(msg: e.toString());
-  //   });
-  // }
-
-  // _getAddressFromLatLon() async {
-  //   try {
-  //     List<Placemark> placemarks = await placemarkFromCoordinates(
-  //         _curentPosition!.latitude, _curentPosition!.longitude);
-
-  //     Placemark place = placemarks[0];
-  //     setState(() {
-  //       _curentAddress =
-  //           "${place.locality},${place.postalCode},${place.street},";
-  //     });
-  //   } catch (e) {
-  //     Fluttertoast.showToast(msg: e.toString());
-  //   }
-  // }
 
   @override
   void initState() {
@@ -206,13 +187,16 @@ class _SOSbtnState extends State<SOSbtn> {
         if (contactList.isEmpty) {
           Fluttertoast.showToast(msg: "emergency contact is empty");
         } else {
+          String helpme = "Help me";
           String messageBody =
-              "https://www.google.com/maps/search/?api=1&query=${_curentPosition!.latitude}%2C${_curentPosition!.longitude}.";
+              "https://maps.google.com/?daddr=${_curentPosition!.latitude},${_curentPosition!.longitude}";
 
           if (await _isPermissionGranted()) {
             contactList.forEach((element) {
-              _sendSms(
-                  "${element.number}", "Help me i am in trouble $messageBody");
+              _sendSms("${element.number}",
+                  "i am $naam and $bioo i am in trouble $messageBody");
+              // _sendSms(
+              //     "+919137503303", " Help me i am in trouble $messageBody");
             });
             print("msg sent");
           } else {

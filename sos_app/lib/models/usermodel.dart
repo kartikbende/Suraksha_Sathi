@@ -5,6 +5,8 @@ class UserModel {
   String createdAt;
   String PhoneNumber;
   String uid;
+  String guardian1;
+  String guardian2;
 
   UserModel(
       {required this.name,
@@ -12,16 +14,21 @@ class UserModel {
       required this.bio,
       required this.createdAt,
       required this.PhoneNumber,
-      required this.uid});
+      required this.uid,
+      required this.guardian1,
+      required this.guardian2});
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-        name: map['name'] ?? '',
-        email: map['email'] ?? '',
-        bio: map['bio'] ?? '',
-        createdAt: map['createdAt'] ?? '',
-        PhoneNumber: map['phoneNumber'] ?? '',
-        uid: map['uid'] ?? '');
+      name: map['name'] ?? '',
+      email: map['email'] ?? '',
+      bio: map['bio'] ?? '',
+      createdAt: map['createdAt'] ?? '',
+      PhoneNumber: map['phoneNumber'] ?? '',
+      uid: map['uid'] ?? '',
+      guardian1: map['guardian1'] ?? '',
+      guardian2: map['guardian2'] ?? '',
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -29,8 +36,11 @@ class UserModel {
       "name": name,
       "email": email,
       "uid": uid,
+      "bio": bio,
       "phoneNumber": PhoneNumber,
-      "createdAt": createdAt
+      "createdAt": createdAt,
+      "guardian1": guardian1,
+      "guardian2": guardian2,
     };
   }
 }

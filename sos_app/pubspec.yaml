@@ -64,7 +64,18 @@ dependencies:
   background_sms: ^0.0.4
   geolocator: ^11.0.0
   geocoding: ^3.0.0
- 
+  # location: ^4.3.0
+  flutter_map_location_marker: ^8.0.8
+  shake: ^2.2.0
+  flutter_background_service_android: ^6.0.0
+  flutter_background_service: ^5.0.5
+  flutter_background_service_ios: ^5.0.0
+  flutter_local_notifications: ^17.1.0
+  flutter_rating_bar: ^4.0.1
+  # vibration: ^1.8.4
+  # telephony: ^0.2.0
+  # background_location: ^0.13.0
+  
 
   
 dev_dependencies:
@@ -80,7 +91,7 @@ flutter_launcher_icons:
   min_sdk_android: 21 # android min sdk min:16, default 21
   
 flutter_lints: ^3.0.1
-  
+   
 
 # For infor mation on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -124,3 +135,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+

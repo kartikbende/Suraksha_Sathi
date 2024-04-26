@@ -9,6 +9,7 @@ import 'package:sos_app/components/LocaleString.dart';
 import 'package:sos_app/pages/bottomnavbar.dart';
 import 'package:sos_app/provider/auth_provider.dart';
 import 'package:sos_app/provider/registerscreen.dart';
+import 'package:sos_app/utils/background_services.dart';
 
 //import 'package:sos_app/pages/home_screen.dart';
 //import 'package:sos_app/widgets/langselect.dart';
@@ -19,6 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await initializeService();
   runApp(const MyApp());
 }
 

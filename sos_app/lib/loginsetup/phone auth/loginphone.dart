@@ -2,7 +2,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_app/components/custom-textfeild.dart';
+import 'package:sos_app/components/CustomTextFeild.dart';
 import 'package:sos_app/loginsetup/phone%20auth/otpverification.dart';
 
 class loginphone extends StatefulWidget {

@@ -18,7 +18,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
     HomeScreen(),
     mapsview(),
     AddContactsPage(),
-    reviews(),
+    ReviewPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
               icon: Icons.shield,
               text: 'Dashboard',
             ),
-            GButton(icon: Icons.reviews, text: "review"),
+            GButton(icon: Icons.reviews, text: "Reviews"),
           ],
         ),
       ),

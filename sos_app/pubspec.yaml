@@ -66,6 +66,11 @@ dependencies:
   geocoding: ^3.0.0
   # location: ^4.3.0
   flutter_map_location_marker: ^8.0.8
+  shake: ^2.2.0
+  flutter_background_service_android: ^6.2.2
+  flutter_background_service: ^5.0.5
+  flutter_background_service_ios: ^5.0.0
+  flutter_local_notifications: ^17.1.0
   
 
   

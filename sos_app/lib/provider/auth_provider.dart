@@ -317,6 +317,70 @@ class authprov extends ChangeNotifier {
         .doc(userId)
         .delete();
   }
+
+  // save current users email
+  Future<String?> getCurrentUserEmail(String uid) async {
+    try {
+      // Reference to the user document in Firestore based on currentUserUid
+      DocumentSnapshot userSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+      // Check if the user document exists
+      if (userSnapshot.exists) {
+        // Extract the email field from the user document
+        String? userEmail = userSnapshot.get('email');
+        return userEmail;
+      } else {
+        print('User document not found');
+        return null; // Return null if user document does not exist
+      }
+    } catch (e) {
+      print('Error retrieving user email: $e');
+      return null; // Return null if an error occurs
+    }
+  }
+
+  Future<String?> getCurrentUserbio(String uid) async {
+    try {
+      // Reference to the user document in Firestore based on currentUserUid
+      DocumentSnapshot userSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+      // Check if the user document exists
+      if (userSnapshot.exists) {
+        // Extract the email field from the user document
+        String? userbio = userSnapshot.get('bio');
+        return userbio;
+      } else {
+        print('User document not found');
+        return null; // Return null if user document does not exist
+      }
+    } catch (e) {
+      print('Error retrieving user email: $e');
+      return null; // Return null if an error occurs
+    }
+  }
+
+  Future<String?> getCurrentUserName(String uid) async {
+    try {
+      // Reference to the user document in Firestore based on currentUserUid
+      DocumentSnapshot userSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+      // Check if the user document exists
+      if (userSnapshot.exists) {
+        // Extract the email field from the user document
+        String? usernamee = userSnapshot.get('name');
+        return usernamee;
+      } else {
+        print('User document not found');
+        return null; // Return null if user document does not exist
+      }
+    } catch (e) {
+      print('Error retrieving user email: $e');
+      return null; // Return null if an error occurs
+    }
+  }
 }
 
 class Userss {

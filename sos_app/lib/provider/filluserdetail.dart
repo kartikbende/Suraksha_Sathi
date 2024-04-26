@@ -19,12 +19,16 @@ class _filldetailsuserState extends State<filldetailsuser> {
   TextEditingController nameController = TextEditingController();
   TextEditingController addiinfoController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  TextEditingController guardian1controller = TextEditingController();
+  TextEditingController guardian2controller = TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
     nameController.dispose();
     addiinfoController.dispose();
+    guardian1controller.dispose();
+    guardian2controller.dispose();
     super.dispose();
   }
 
@@ -108,10 +112,24 @@ class _filldetailsuserState extends State<filldetailsuser> {
                                   inputType: TextInputType.emailAddress,
                                   maxLines: 1,
                                   controller: emailController),
+                              //Guardian1
+                              TextField(
+                                  hintText: 'Enter Guardian1 Email',
+                                  icon: Icons.email,
+                                  inputType: TextInputType.emailAddress,
+                                  maxLines: 1,
+                                  controller: guardian1controller),
+                              //Guardian2
+                              TextField(
+                                  hintText: 'Enter Guardian2 Email',
+                                  icon: Icons.email,
+                                  inputType: TextInputType.emailAddress,
+                                  maxLines: 1,
+                                  controller: guardian2controller),
                               // additional information
                               TextField(
                                   hintText:
-                                      "Enter the additional Information about yourself which can be used in emergency senario eg: Blood Group, other conditions etc.",
+                                      "Enter Your Medical Conditions along with Blood Group.",
                                   icon: Icons.edit,
                                   inputType: TextInputType.name,
                                   maxLines: 3,
@@ -221,12 +239,20 @@ class _filldetailsuserState extends State<filldetailsuser> {
       createdAt: "",
       PhoneNumber: "",
       uid: "",
+      guardian1: guardian1controller.text.trim(),
+      guardian2: guardian2controller.text.trim(),
     );
     String name = nameController.text.trim();
     String email = emailController.text.trim();
     String bio = addiinfoController.text.trim();
-    if (name == "" && email == "" && bio == "") {
-      showSnckBar(context, "Entire all the details");
+    String guardian1 = guardian1controller.text.trim();
+    String guardian2 = guardian2controller.text.trim();
+    if (name == "" &&
+        email == "" &&
+        bio == "" &&
+        guardian1 == "" &&
+        guardian2 == "") {
+      showSnckBar(context, "Enter all the details");
     } else {
       ap.saveUserDataToFirebase(
         context: context,

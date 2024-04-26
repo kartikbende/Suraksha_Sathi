@@ -1,7 +1,7 @@
 // ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_app/components/custom-textfeild.dart';
+import 'package:sos_app/components/CustomTextFeild.dart';
 import 'package:sos_app/loginsetup/email%20auth/Login_screen.dart';
 
 import '../../utils/snckkbar.dart';

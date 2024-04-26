@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sos_app/components/custom-textfeild.dart';
+import 'package:sos_app/components/CustomTextFeild.dart';
 import 'package:sos_app/components/square_tile.dart';
 import 'package:sos_app/loginsetup/email%20auth/forgot_pass.dart';
 import 'package:sos_app/loginsetup/email%20auth/signup_screen.dart';
